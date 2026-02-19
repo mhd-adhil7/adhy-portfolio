@@ -1,0 +1,304 @@
+/* About Section Styles */
+.about-section {
+    padding: 120px 0;
+    width: 100%;
+    /* Soft warm gradient matching the reference image */
+    background: linear-gradient(105deg, #FFF1EB 0%, #F4F0E6 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Left: Code Card */
+.about-visuals {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.code-card {
+    background: #0b3c3f;
+    /* Darker, richer navy similar to the image */
+    border-radius: 24px;
+    /* More rounded corners */
+    padding: 48px;
+    /* More spacious padding */
+    width: 100%;
+    max-width: 420px;
+    
+    /* Deep, soft shadow */
+    position: relative;
+    z-index: 2;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    /* Cleaner monospace stack */
+    transition: transform 0.3s ease;
+    border: none;
+    /* Removed border for cleaner look */
+}
+
+
+
+.glow-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    background: linear-gradient(135deg, #43E97B, #38F9D7);
+    filter: blur(120px);
+    opacity: 0.15;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Window Header */
+.window-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    /* Increased spacing */
+}
+
+.dots {
+    display: flex;
+    gap: 10px;
+    /* Slightly more gap */
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot.red {
+    background-color: #FF5F56;
+}
+
+.dot.yellow {
+    background-color: #FFBD2E;
+}
+
+.dot.green {
+    background-color: #27C93F;
+}
+
+.filename {
+    color: #5c6370;
+    /* Muted grey for filename */
+    font-size: 0.9rem;
+    font-weight: 500;
+    font-family: inherit;
+    opacity: 0.8;
+}
+
+/* Code Content */
+.code-content {
+    font-size: 15px;
+    /* Precise sizing */
+    line-height: 1.9;
+    color: #abb2bf;
+    font-weight: 500;
+}
+
+.line {
+    /* removed white-space: pre to allow normal flow */
+    margin-bottom: 0px;
+    /* Tighter lines */
+}
+
+/* Custom Spacing for Indentation */
+.indent {
+    margin-left: 24px;
+}
+
+.double-indent {
+    margin-left: 48px;
+}
+
+/* Syntax Highlighting Colors - Precise One Dark Theme */
+.keyword {
+    color: #c678dd;
+}
+
+/* Purple (const, function, return) */
+.variable {
+    color: #e5c07b;
+}
+
+/* Yellow (Adhil) */
+.operator {
+    color: #56b6c2;
+}
+
+/* Cyan (=) */
+.punctuation {
+    color: #abb2bf;
+}
+
+/* Grey ({, }, :, [, ], ,) */
+.string {
+    color: #98c379;
+}
+
+/* Green (Strings) */
+.property {
+    color: #e06c75;
+}
+
+/* Red (role, skills) */
+.function {
+    color: #61afef;
+}
+
+/* Blue (createMagic) */
+
+/* Right: Text Content */
+.about-text-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.section-tag-wrapper {
+    margin-bottom: 20px;
+}
+
+.section-tag-text {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #6366F1;
+    /* Indigo matching the 'About Me' in image */
+    background: #EEF2FF;
+    /* Subtle badge background */
+    padding: 8px 16px;
+    border-radius: 30px;
+}
+
+.about-heading {
+    font-size: 3.5rem;
+    /* Large impact heading */
+    line-height: 1.1;
+    font-weight: 700;
+    color: #1F2937;
+    /* Dark Grey/Charcoal */
+    margin-bottom: 30px;
+    letter-spacing: -0.03em;
+}
+
+.about-description-group {
+    margin-bottom: 40px;
+}
+
+.about-desc {
+    font-size: 1.15rem;
+    color: #6B7280;
+    /* Cool Grey */
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 520px;
+}
+
+.about-cta-wrapper {
+    margin-top: 10px;
+}
+
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #3454D1;
+    /* Royal Blue from image */
+    color: #ffffff;
+    padding: 18px 40px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    
+    text-decoration: none;
+}
+
+.btn-download:hover {
+    background-color: #2740A8;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(52, 84, 209, 0.35);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .about-wrapper {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        text-align: center;
+    }
+
+    .about-text-content {
+        align-items: center;
+    }
+
+    .code-card {
+        margin: 0 auto;
+    }
+
+    .about-desc {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-heading {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .code-card {
+        padding: 24px;
+    }
+
+    .about-heading {
+        font-size: 2.25rem;
+    }
+
+    .code-content {
+        font-size: 0.85rem;
+    }
+}
+
+/* Cursor animation */
+.typing-cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: #56B6C2;
+    /* Cyan cursor */
+    font-weight: bold;
+    margin-left: 2px;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Ensure empty spans maintain height if they are on a new line (though in this case lines are divs) */
+.code-content .line {
+    min-height: 1.5em;
+    /* Prevent line collapse */
+}

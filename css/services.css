@@ -1,0 +1,307 @@
+/* Services Section Split Layout */
+.services-section {
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F4F0E6;
+    /* Match main background  */
+    overflow: hidden;
+    position: relative;
+    padding: 40px;
+    /* Add padding to show rounded corners of container */
+}
+
+.services-split-container {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    /* Constraints the width on large screens */
+    height: 85vh;
+    min-height: 600px;
+    /* Safety for smaller vertical screens */
+    position: relative;
+    border-radius: 40px;
+    /* Large rounded corners for the whole block */
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    margin: 0 auto;
+    /* key fix for centering */
+}
+
+/* Common Panel Styles */
+.service-panel {
+    position: relative;
+    height: 100%;
+    transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 40px;
+}
+
+/* UI/UX Panel - Inactive Look (Grey) */
+.panel-ui {
+    width: 50%;
+    background-color: #D8D8D8;
+    /* Matte grey */
+}
+
+/* DEV Panel - Active Look (White/Light Cyan) */
+.panel-dev {
+    width: 50%;
+    background-color: #F0FAFC;
+    /* Very light cyan */
+}
+
+/* Active States Widths */
+.services-split-container.active-ui .panel-ui {
+    width: 65%;
+    background-color: #F0FAFC;
+}
+
+.services-split-container.active-ui .panel-dev {
+    width: 35%;
+    background-color: #D8D8D8;
+}
+
+.services-split-container.active-dev .panel-dev {
+    width: 65%;
+    background-color: #F0FAFC;
+}
+
+.services-split-container.active-dev .panel-ui {
+    width: 35%;
+    background-color: #D8D8D8;
+}
+
+/* Content Wrapper */
+.panel-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transition: all 0.5s ease;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Inactive Text Styling */
+.services-split-container.active-dev .panel-ui .panel-title,
+.services-split-container.active-ui .panel-dev .panel-title {
+    color: #9CA3AF;
+    /* Grey text for inactive title */
+}
+
+.services-split-container.active-dev .panel-ui .panel-number,
+.services-split-container.active-ui .panel-dev .panel-number {
+    color: #9CA3AF;
+    /* Grey number for inactive */
+}
+
+.panel-number {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    color: #8B5CF6;
+    /* Purple for active */
+    transition: color 0.3s ease;
+}
+
+.panel-title {
+    font-size: 8rem;
+    /* Big impact title */
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 30px;
+    color: #111827;
+    /* Dark black for active */
+    letter-spacing: -2px;
+    transition: color 0.3s ease, transform 0.5s ease;
+}
+
+/* Scaling inactive title */
+.services-split-container.active-dev .panel-ui .panel-title,
+.services-split-container.active-ui .panel-dev .panel-title {
+    transform: scale(0.8);
+}
+
+
+/* Active Content (Desc + Btn) */
+.active-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s 0.2s ease;
+}
+
+/* Only show active content when panel is active */
+.services-split-container.active-ui .panel-ui .active-content,
+.services-split-container.active-dev .panel-dev .active-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.panel-desc {
+    font-size: 1.1rem;
+    max-width: 400px;
+    margin-bottom: 30px;
+    color: #6B7280;
+    /* Muted grey text */
+    line-height: 1.6;
+}
+
+.panel-btn {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #111827;
+    text-decoration: none;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #8B5CF6;
+    /* Purple underline */
+    padding-bottom: 4px;
+    gap: 8px;
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.panel-btn:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Bottom Badge (Card) */
+.panel-badge {
+    margin-top: 50px;
+    background: #2D3342;
+    /* Dark navy styling from image */
+    color: #fff;
+    padding: 60px 80px;
+    border-radius: 16px;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: monospace;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    /* Initially hidden */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s 0.4s ease;
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.services-split-container.active-ui .panel-ui .panel-badge,
+.services-split-container.active-dev .panel-dev .panel-badge {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Floating Elements (Icons) */
+.floating-element {
+    position: absolute;
+    background: #2D3342;
+    /* Dark navy */
+    color: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.5s ease;
+    opacity: 0;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Show floats only on active panel */
+.services-split-container.active-ui .panel-ui .floating-element,
+.services-split-container.active-dev .panel-dev .floating-element {
+    opacity: 1;
+    animation: float 6s ease-in-out infinite;
+}
+
+
+/* Specific Floating Positions - Matching Image */
+/* Float 1: Left simple icon */
+.float-1 {
+    width: 50px;
+    height: 50px;
+    top: 30%;
+    left: 20%;
+    border-radius: 14px;
+    transform: rotate(-10deg);
+}
+
+/* Float 2: Right pill with text */
+.float-2 {
+    padding: 10px 18px;
+    top: 25%;
+    right: 20%;
+    font-family: monospace;
+    font-size: 0.8rem;
+    transform: rotate(5deg);
+}
+
+/* Float 3: Small dash/pill */
+.float-3 {
+    display: none;
+    /* Removed based on clean image */
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .panel-title {
+        font-size: 5rem;
+    }
+
+    .services-split-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+        border-radius: 0;
+    }
+
+    .services-section {
+        padding: 0;
+    }
+
+    .service-panel {
+        width: 100% !important;
+        min-height: 50vh;
+    }
+
+    .panel-badge {
+        padding: 30px 40px;
+        width: auto;
+    }
+}
