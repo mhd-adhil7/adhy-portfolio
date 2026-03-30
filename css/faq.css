@@ -13,36 +13,63 @@
 
 /* Left Card */
 .faq-left-card {
-    background: #ffffff;
-    /* Or a subtle gradient if preferred */
-    border-radius: var(--radius-md);
-    padding: 60px 50px;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 50px 40px;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    /* Premium shadow */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
     position: sticky;
     top: 100px;
-    /* Sticky effect */
-    border: 1px solid rgba(11, 60, 63, 0.03);
 }
 
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: #4B5563;
+    font-weight: 500;
+    margin-bottom: 24px;
+}
 
-.faq-icon-circle img{
-    height: 50px;
-    margin-bottom: 10px;
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #10B981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+.faq-icon-circle img {
+    height: 44px;
+    margin-bottom: 20px;
 }
 
 .faq-card-content h3 {
-    font-size: 1.8rem;
-    color: var(--text-color);
+    font-size: 2rem;
+    color: #111827;
     margin-bottom: 12px;
     font-weight: 600;
+    letter-spacing: -0.02em;
 }
 
 .faq-card-content p {
     color: #6B7280;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
     line-height: 1.6;
+    font-size: 1.05rem;
 }
 
 .btn-primary-block {
@@ -50,46 +77,85 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 16px;
-    background: #0B3C3F;
-    /* Orange CTA */
+    padding: 18px;
+    background: black;
     color: white;
-    font-weight: 600;
-    border-radius: var(--radius-full);
+    font-weight: 500;
+    font-size: 1.05rem;
+    border-radius: 100px;
     text-decoration: none;
     margin-bottom: 24px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-   
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-primary-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(41, 41, 41);
+    z-index: -1;
+    transition: opacity 0.4s ease;
+    opacity: 0;
 }
 
 .btn-primary-block:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 25px #e2feff;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(56, 56, 56, 0.25);
+}
+
+.btn-primary-block:hover::before {
+    opacity: 1;
 }
 
 .whatsapp-row {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 12px;
+    padding-top: 20px;
+    margin-top: 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-row:active {
+    transform: scale(0.98);
 }
 
 .whatsapp-icon {
     width: 40px;
     height: 40px;
-    background: #DCFCE7;
-    /* Light green bg */
+    background: #F3F4F6;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    transition: all 0.3s ease;
+    color: #9CA3AF;
+}
+
+.whatsapp-icon svg {
+    transition: all 0.3s ease;
+}
+
+.whatsapp-row:hover .whatsapp-icon {
+    background: #DCFCE7;
+    transform: scale(1.1);
+    color: #10B981;
 }
 
 .whatsapp-row p {
     margin: 0;
     font-size: 0.9rem;
-    color: var(--text-color);
+    color: #6B7280;
     text-align: left;
     line-height: 1.4;
 }
@@ -178,5 +244,184 @@
         position: static;
         max-width: 500px;
         margin: 0 auto;
+    }
+}
+
+/* Contact Modal Styles */
+.contact-modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.contact-modal-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 2rem; /* 2xl */
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contact-modal-overlay.active .contact-modal-card {
+    transform: scale(1) translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    color: #0a0a0a;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close-btn:hover {
+    opacity: 0.6;
+    transform: scale(1.1);
+}
+
+.modal-header h3 {
+    color: #0a0a0a;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.modal-header p {
+    color: #6b6b6b;
+    font-size: 1rem;
+    margin-bottom: 32px;
+}
+
+.modal-body .input-group {
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-body label {
+    color: #6b6b6b;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.modal-body input,
+.modal-body textarea {
+    background: #fafafa;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 14px 16px;
+    color: #0a0a0a;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.modal-body input:focus,
+.modal-body textarea:focus {
+    border-color: #0a0a0a;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+.modal-body input::placeholder,
+.modal-body textarea::placeholder {
+    color: #9a9a9a;
+}
+
+.modal-divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.08);
+    margin: 32px 0 24px 0;
+}
+
+.btn-whatsapp-send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    background: #0a0a0a;
+    color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 100px;
+    padding: 16px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-whatsapp-send svg {
+    color: #ffffff;
+    transition: color 0.3s ease;
+}
+
+.btn-whatsapp-send:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-whatsapp-send:not(:disabled):hover {
+    background: #ffffff;
+    color: #0a0a0a;
+    border-color: #0a0a0a;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px) scale(1.02);
+}
+
+.btn-whatsapp-send:not(:disabled):hover svg {
+    color: #0a0a0a;
+}
+
+.modal-footer-text {
+    text-align: center;
+    color: #6b6b6b;
+    font-size: 0.8rem;
+    margin-top: 16px;
+    margin-bottom: 0 !important;
+}
+
+@media (max-width: 600px) {
+    .contact-modal-overlay {
+        padding: 16px;
+        box-sizing: border-box;
+    }
+    
+    .contact-modal-card {
+        padding: 32px 24px;
+        border-radius: 1.5rem;
     }
 }

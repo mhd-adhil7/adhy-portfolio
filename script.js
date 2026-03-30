@@ -15,74 +15,192 @@ function toggleService(service) {
 // Make it global
 window.toggleService = toggleService;
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Tab Switching for Projects
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const projectGrid = document.getElementById('project-grid');
+const projectsData = [
+    {
+        title: "Jewellery Brand –<br><strong>Elegant Digital Store</strong>",
+        desc: "A premium e-commerce platform crafted for a high-end luxury jewellery brand, focusing on elegant imagery and seamless user experience.",
+        mDesc: "A premium e-commerce platform crafted for a high-end luxury jewellery brand, focusing on elegant imagery.",
+        img: "./assets/mockups/project1.png",
+        tags: ["UI/UX Design", "E-commerce"],
+        link: "#work"
+    },
+    {
+        title: "FoodExpress –<br><strong>Seamless Delivery</strong>",
+        desc: "An intuitive mobile application designed for quick, easy, and delightful food delivery experiences for modern urbanites.",
+        mDesc: "An intuitive mobile application designed for quick, easy, and delightful food delivery experiences for modern urbanites.",
+        img: "./assets/mockups/project2.png",
+        tags: ["Mobile App", "Delivery"],
+        link: "#work"
+    },
+    {
+        title: "FinTrack –<br><strong>Smart Tracking</strong>",
+        desc: "A comprehensive financial dashboard platform designed for precise tracking of investments and personal finances in real-time.",
+        mDesc: "A comprehensive financial dashboard platform designed for precise tracking of investments and personal finances.",
+        img: "./assets/mockups/project3.png",
+        tags: ["Web Platform", "Dashboard"],
+        link: "#work"
+    },
+    {
+        title: "Adhil Studio –<br><strong>Creative Identity</strong>",
+        desc: "A personal portfolio website showcasing creative design thinking, front-end development capabilities, and unique digital aesthetics.",
+        mDesc: "A personal portfolio website showcasing creative design thinking, front-end development capabilities, and unique aesthetics.",
+        img: "./assets/mockups/project4.png",
+        tags: ["Web Design", "Frontend"],
+        link: "#work"
+    }
+];
 
-    const projectsData = {
-        mobile: [
-            { title: 'Fintech App', category: 'Mobile App', imgGradient: 'linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)' },
-            { title: 'Travel Dashboard', category: 'Mobile App', imgGradient: 'linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)' },
-            { title: 'Health & Wellness', category: 'Mobile App', imgGradient: 'linear-gradient(to right, #4facfe 0%, #00f2fe 100%)' },
-            { title: 'E-Commerce Mobile', category: 'Mobile App', imgGradient: 'linear-gradient(to top, #fff1eb 0%, #ace0f9 100%)' }
-        ],
-        web: [
-            { title: 'Corporate Website', category: 'Web Design', imgGradient: 'linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%)' },
-            { title: 'Agency Portfolio', category: 'Web Design', imgGradient: 'linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%)' },
-            { title: 'SaaS Landing Page', category: 'Web Design', imgGradient: 'linear-gradient(to right, #fa709a 0%, #fee140 100%)' },
-            { title: 'Dashboard UI', category: 'Web Design', imgGradient: 'linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)' }
-        ]
-    };
+function renderProjects() {
+    const desktopImagesContainer = document.getElementById('desktopImageWrap');
+    const desktopDetailsContainer = document.getElementById('desktopTextsWrap');
+    const mobileSnapContainer = document.getElementById('mobileWorkSnap');
+    const mobileProgressContainer = document.getElementById('mobileWorkProgress');
 
-    function renderProjects(category) {
-        // Simple fade out
-        projectGrid.style.opacity = '0';
+    if (desktopImagesContainer && desktopDetailsContainer && mobileSnapContainer && mobileProgressContainer) {
+        let imagesHtml = '';
+        let detailsHtml = '';
+        let mCardsHtml = '';
+        let mDotsHtml = '';
 
-        setTimeout(() => {
-            projectGrid.innerHTML = '';
-            const data = projectsData[category];
+        projectsData.forEach((project, index) => {
+            const imgClass = index === 0 ? 'project-img active' : 'project-img';
+            imagesHtml += `<img src="${project.img}" alt="Project ${index+1}" class="${imgClass}" data-index="${index}">`;
 
-            data.forEach(project => {
-                const card = document.createElement('div');
-                card.className = 'project-card';
-                card.innerHTML = `
-                    <div class="project-image" style="background-image: ${project.imgGradient}"></div>
-                    <div class="project-info">
-                        <div>
-                            <span style="font-size: 0.8rem; opacity: 0.6; text-transform: uppercase;">${project.category}</span>
-                            <h4>${project.title}</h4>
+            const num = (index + 1).toString().padStart(2, '0');
+            const tagsHtml = project.tags.map(tag => `<span class="work-tag">${tag}</span>`).join('');
+            detailsHtml += `
+                <div class="project-details" data-index="${index}">
+                    <div class="work-card-header">
+                        <span class="work-number">${num}</span>
+                        <div class="work-tags">
+                            ${tagsHtml}
                         </div>
-                        <button class="project-arrow">
-                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 12h14m-7-7l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
                     </div>
-                `;
-                projectGrid.appendChild(card);
-            });
+                    <div class="work-card-body">
+                        <h3 class="work-title-new">${project.title}</h3>
+                        <p class="work-desc">${project.desc}</p>
+                    </div>
+                    <div class="work-card-footer">
+                        <a href="${project.link}" class="view-project-btn" target="_blank" rel="noopener noreferrer" aria-label="View Project">View Project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                    </div>
+                </div>
+            `;
 
-            // Fade in
-            projectGrid.style.opacity = '1';
-        }, 300);
+            const mTagsHtml = project.tags.map(tag => `<span class="m-tag">${tag}</span>`).join('');
+            mCardsHtml += `
+                <div class="m-work-card">
+                    <div class="m-project-img">
+                        <img src="${project.img}" loading="lazy" alt="Project ${index+1}">
+                        <div class="m-img-overlay"></div>
+                    </div>
+                    <div class="m-project-content">
+                        <div class="m-tags">
+                            ${mTagsHtml}
+                        </div>
+                        <h3 class="m-title">${project.title}</h3>
+                        <p class="m-desc">${project.mDesc}</p>
+                        <a href="${project.link}" class="m-view-btn" target="_blank" rel="noopener noreferrer" aria-label="View Project">View Project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                    </div>
+                </div>
+            `;
+
+            const dotClass = index === 0 ? 'm-dot active' : 'm-dot';
+            mDotsHtml += `<div class="${dotClass}"></div>`;
+        });
+
+        imagesHtml += '<div class="img-overlay"></div>';
+        
+        desktopImagesContainer.innerHTML = imagesHtml;
+        desktopDetailsContainer.innerHTML = detailsHtml;
+        mobileSnapContainer.innerHTML = mCardsHtml;
+        mobileProgressContainer.innerHTML = mDotsHtml;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 0. Mobile Hamburger Menu
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.m-link');
+
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('active');
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Close on clicking outside
+        document.addEventListener('click', (e) => {
+            if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                hamburgerBtn.classList.remove('active');
+                mobileMenu.classList.remove('open');
+            }
+        });
     }
 
-    // Initial Render
-    renderProjects('mobile'); // Default
+    renderProjects();
 
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class
-            tabBtns.forEach(b => b.classList.remove('active'));
-            // Add active class
-            btn.classList.add('active');
+    // 1. GSAP ScrollTrigger for Projects Section
+    if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
 
-            // Render
-            const category = btn.getAttribute('data-tab');
-            renderProjects(category);
+        const projectDetails = gsap.utils.toArray('.project-details');
+        const projectImages = gsap.utils.toArray('.project-img');
+
+        if (projectDetails.length > 0 && projectImages.length > 0) {
+            projectDetails.forEach((detail, i) => {
+                ScrollTrigger.create({
+                    trigger: detail,
+                    start: "top 60%", // triggers when the top of detail hits 60% of viewport
+                    end: "bottom 60%",
+                    onEnter: () => setActiveProject(i),
+                    onEnterBack: () => setActiveProject(i)
+                });
+            });
+
+            function setActiveProject(index) {
+                // Update content focus
+                projectDetails.forEach((el, i) => {
+                    if (i === index) el.classList.add('active');
+                    else el.classList.remove('active');
+                });
+
+                // Update sticky images crossfade
+                projectImages.forEach((img, i) => {
+                    if (i === index) img.classList.add('active');
+                    else img.classList.remove('active');
+                });
+            }
+            
+            // Initialization
+            setActiveProject(0);
+        }
+    }
+
+    // 1b. Mobile Work Carousel Dots Sync
+    const mobileSnapContainer = document.getElementById('mobileWorkSnap');
+    const mobileDots = document.querySelectorAll('.m-dot');
+    
+    if (mobileSnapContainer && mobileDots.length > 0) {
+        mobileSnapContainer.addEventListener('scroll', () => {
+            const scrollLeft = mobileSnapContainer.scrollLeft;
+            const cardWidth = mobileSnapContainer.offsetWidth; // Approximately the width of one card + gap
+            const activeIndex = Math.round(scrollLeft / cardWidth);
+            
+            mobileDots.forEach((dot, index) => {
+                if (index === activeIndex) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
         });
-    });
+    }
 
     // 2. Smooth Scroll for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -109,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Add animation classes to elements
-    const fadeElements = document.querySelectorAll('.hero-left, .hero-right, .code-card, .about-text-content, .project-card, .service-item');
+    const fadeElements = document.querySelectorAll('.hero-left, .code-card, .about-text-content, .services-split-container, .m-svc-card, .work-header, .pinned-card, .m-work-card, .faq-left-card, .faq-accordion, .footer-card');
     fadeElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -147,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Active Navigation Link on Scroll
     const sections = document.querySelectorAll('section, footer');
-    const navLinks = document.querySelectorAll('.nav-center-pill a');
+    const navLinks = document.querySelectorAll('.nav-center-pill a, .m-link');
 
     const navObserverOptions = {
         root: null,
@@ -317,5 +435,74 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { threshold: 0.1 });
         typewriterObserver.observe(codeCard);
+    }
+
+    // 9. Contact Modal Flow
+    const openContactModalBtn = document.getElementById('openContactModal');
+    const contactModal = document.getElementById('contactModal');
+    const closeContactModalBtn = document.getElementById('closeContactModal');
+    const userNameInput = document.getElementById('userName');
+    const userMessageInput = document.getElementById('userMessage');
+    const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
+
+    if (openContactModalBtn && contactModal && closeContactModalBtn) {
+        // Open Modal
+        openContactModalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent bg scrolling
+        });
+
+        // Close Modal
+        const closeModal = () => {
+            contactModal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        closeContactModalBtn.addEventListener('click', closeModal);
+
+        // Close on clicking outside the card
+        contactModal.addEventListener('click', (e) => {
+            if (e.target === contactModal) {
+                closeModal();
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Enable/Disable send button based on message input
+        const validateInput = () => {
+            if (userMessageInput.value.trim().length > 0) {
+                sendWhatsappBtn.removeAttribute('disabled');
+            } else {
+                sendWhatsappBtn.setAttribute('disabled', 'true');
+            }
+        };
+
+        userMessageInput.addEventListener('input', validateInput);
+
+        // Send via WhatsApp
+        sendWhatsappBtn.addEventListener('click', () => {
+            const name = userNameInput.value.trim() || 'a visitor';
+            const message = userMessageInput.value.trim();
+            if (!message) return;
+
+            const text = `Hi, I'm ${name}. ${message}`;
+            const encodedText = encodeURIComponent(text);
+            const whatsappUrl = `https://wa.me/9744342857?text=${encodedText}`;
+
+            window.open(whatsappUrl, '_blank');
+            closeModal();
+            
+            // Clear form
+            userNameInput.value = '';
+            userMessageInput.value = '';
+            validateInput();
+        });
     }
 });

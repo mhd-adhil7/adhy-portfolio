@@ -3,7 +3,7 @@
     padding: 120px 0;
     width: 100%;
     /* Soft warm gradient matching the reference image */
-    background: linear-gradient(105deg, #FFF1EB 0%, #F4F0E6 100%);
+    background: #f8f8f8;
     position: relative;
     overflow: hidden;
 }
@@ -23,7 +23,7 @@
 }
 
 .code-card {
-    background: #0b3c3f;
+    background: #1b1b1b;
     /* Darker, richer navy similar to the image */
     border-radius: 24px;
     /* More rounded corners */
@@ -177,9 +177,9 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #6366F1;
+    color: #0b3c3f;
     /* Indigo matching the 'About Me' in image */
-    background: #EEF2FF;
+    background: #D8E6E2;
     /* Subtle badge background */
     padding: 8px 16px;
     border-radius: 30px;
@@ -217,7 +217,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #3454D1;
+    background-color: #171717;
     /* Royal Blue from image */
     color: #ffffff;
     padding: 18px 40px;
@@ -230,9 +230,9 @@
 }
 
 .btn-download:hover {
-    background-color: #2740A8;
+    background-color: #444444;
     transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(52, 84, 209, 0.35);
+    box-shadow: 0 8px 12px #b1c2c3;
 }
 
 /* Responsive */
