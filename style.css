@@ -191,6 +191,11 @@ small {
     height: 40px;
     width: auto;
     object-fit: contain;
+    filter: brightness(0);
+}
+
+.faq-icon-circle img, .footer-icon-circle img {
+    filter: brightness(0);
 }
 
 .nav-center-pill {
