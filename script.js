@@ -17,36 +17,31 @@ window.toggleService = toggleService;
 
 const projectsData = [
     {
-        title: "Jewellery Brand –<br><strong>Elegant Digital Store</strong>",
-        desc: "A premium e-commerce platform crafted for a high-end luxury jewellery brand, focusing on elegant imagery and seamless user experience.",
-        mDesc: "A premium e-commerce platform crafted for a high-end luxury jewellery brand, focusing on elegant imagery.",
+        title: "SmartBudget –<br><strong>Expense Management App</strong>",
+        desc: "A smart expense management application designed to help users track spending, manage budgets, and gain better financial control through a clean and intuitive user experience.",
         img: "./assets/mockups/project1.png",
-        tags: ["UI/UX Design", "E-commerce"],
-        link: "#work"
+        tags: ["Mobile App", "UI/UX Design"],
+        link: "#work",
+        role: "UI/UX Designer",
+        tools: "Figma / React"
     },
     {
-        title: "FoodExpress –<br><strong>Seamless Delivery</strong>",
-        desc: "An intuitive mobile application designed for quick, easy, and delightful food delivery experiences for modern urbanites.",
-        mDesc: "An intuitive mobile application designed for quick, easy, and delightful food delivery experiences for modern urbanites.",
+        title: "Golden Ocean –<br><strong>Investment & Trade Platform</strong>",
+        desc: "Designed a professional investment and trading platform with a focus on clarity, trust, and usability, enabling users to explore services and manage financial activities with ease.",
         img: "./assets/mockups/project2.png",
-        tags: ["Mobile App", "Delivery"],
-        link: "#work"
+        tags: ["Web Platform", "Investment & Trade"],
+        link: "#work",
+        role: "UI/UX Designer",
+        tools: "Figma / React"
     },
     {
-        title: "FinTrack –<br><strong>Smart Tracking</strong>",
-        desc: "A comprehensive financial dashboard platform designed for precise tracking of investments and personal finances in real-time.",
-        mDesc: "A comprehensive financial dashboard platform designed for precise tracking of investments and personal finances.",
+        title: "FoodChoice –<br><strong>Food Ordering App</strong>",
+        desc: "A modern food ordering application crafted to provide a fast, seamless, and enjoyable user experience, making it easy for users to browse, select, and order their favorite meals.",
         img: "./assets/mockups/project3.png",
-        tags: ["Web Platform", "Dashboard"],
-        link: "#work"
-    },
-    {
-        title: "Adhil Studio –<br><strong>Creative Identity</strong>",
-        desc: "A personal portfolio website showcasing creative design thinking, front-end development capabilities, and unique digital aesthetics.",
-        mDesc: "A personal portfolio website showcasing creative design thinking, front-end development capabilities, and unique aesthetics.",
-        img: "./assets/mockups/project4.png",
-        tags: ["Web Design", "Frontend"],
-        link: "#work"
+        tags: ["Mobile App", "Food Ordering"],
+        link: "#work",
+        role: "UI/UX Designer",
+        tools: "Figma / React"
     }
 ];
 
@@ -68,6 +63,16 @@ function renderProjects() {
 
             const num = (index + 1).toString().padStart(2, '0');
             const tagsHtml = project.tags.map(tag => `<span class="work-tag">${tag}</span>`).join('');
+            
+            let optionalInfoHtml = '';
+            if (project.role && project.tools) {
+                optionalInfoHtml = `
+                <div class="work-info" style="margin-top: 20px; font-size: 0.95rem; color: #4b5563;">
+                    <div style="margin-bottom: 4px;"><strong>Role:</strong> ${project.role}</div>
+                    <div><strong>Tools:</strong> ${project.tools}</div>
+                </div>`;
+            }
+
             detailsHtml += `
                 <div class="project-details" data-index="${index}">
                     <div class="work-card-header">
@@ -79,6 +84,7 @@ function renderProjects() {
                     <div class="work-card-body">
                         <h3 class="work-title-new">${project.title}</h3>
                         <p class="work-desc">${project.desc}</p>
+                        ${optionalInfoHtml}
                     </div>
                     <div class="work-card-footer">
                         <a href="${project.link}" class="view-project-btn" target="_blank" rel="noopener noreferrer" aria-label="View Project">View Project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
@@ -87,6 +93,16 @@ function renderProjects() {
             `;
 
             const mTagsHtml = project.tags.map(tag => `<span class="m-tag">${tag}</span>`).join('');
+            
+            let mOptionalInfoHtml = '';
+            if (project.role && project.tools) {
+                mOptionalInfoHtml = `
+                <div class="m-work-info" style="margin-bottom: 24px; font-size: 0.9rem; color: #6b7280; font-family: var(--font-body);">
+                    <div style="margin-bottom: 4px;"><strong>Role:</strong> ${project.role}</div>
+                    <div><strong>Tools:</strong> ${project.tools}</div>
+                </div>`;
+            }
+
             mCardsHtml += `
                 <div class="m-work-card">
                     <div class="m-project-img">
@@ -98,7 +114,8 @@ function renderProjects() {
                             ${mTagsHtml}
                         </div>
                         <h3 class="m-title">${project.title}</h3>
-                        <p class="m-desc">${project.mDesc}</p>
+                        <p class="m-desc" style="${mOptionalInfoHtml ? 'margin-bottom: 12px;' : ''}">${project.desc}</p>
+                        ${mOptionalInfoHtml}
                         <a href="${project.link}" class="m-view-btn" target="_blank" rel="noopener noreferrer" aria-label="View Project">View Project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                     </div>
                 </div>
