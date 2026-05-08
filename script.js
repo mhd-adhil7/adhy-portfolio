@@ -21,7 +21,7 @@ const projectsData = [
         desc: "A smart expense management application designed to help users track spending, manage budgets, and gain better financial control through a clean and intuitive user experience.",
         img: "./assets/mockups/project1.png",
         tags: ["Mobile App", "UI/UX Design"],
-        link: "#work",
+        link: "https://www.figma.com/design/F6FZ9YNZA1rvLP2UxXoJi8/Untitled?node-id=0-1&t=aJsFImDThCONE8hL-1",
         role: "UI/UX Designer",
         tools: "Figma / React"
     },
@@ -30,7 +30,7 @@ const projectsData = [
         desc: "Designed a professional investment and trading platform with a focus on clarity, trust, and usability, enabling users to explore services and manage financial activities with ease.",
         img: "./assets/mockups/project2.png",
         tags: ["Web Platform", "Investment & Trade"],
-        link: "#work",
+        link: "https://golden-ocean.vercel.app/",
         role: "UI/UX Designer",
         tools: "Figma / React"
     },
@@ -39,9 +39,18 @@ const projectsData = [
         desc: "A modern food ordering application crafted to provide a fast, seamless, and enjoyable user experience, making it easy for users to browse, select, and order their favorite meals.",
         img: "./assets/mockups/project3.png",
         tags: ["Mobile App", "Food Ordering"],
-        link: "#work",
+        link: "https://www.figma.com/design/re9ZDvpsSjzurHDKCQsO9s/Untitled?node-id=0-1&t=CZhfO21BdgwtoTdX-1",
         role: "UI/UX Designer",
         tools: "Figma / React"
+    },
+    {
+        title: "Vyram Jewells –<br><strong>Jewelry E-commerce</strong>",
+        desc: "An elegant and premium e-commerce platform designed for fine jewelry, providing a seamless shopping experience with a focus on luxury, aesthetics, and user-friendly navigation.",
+        img: "./assets/mockups/project4.png",
+        tags: ["Web Platform", "E-commerce"],
+        link: "https://vyram-jewells-frontend.777adhiii.workers.dev/",
+        role: "UI/UX Designer / Developer",
+        tools: "React / CSS"
     }
 ];
 
@@ -59,7 +68,7 @@ function renderProjects() {
 
         projectsData.forEach((project, index) => {
             const imgClass = index === 0 ? 'project-img active' : 'project-img';
-            imagesHtml += `<img src="${project.img}" alt="Project ${index+1}" class="${imgClass}" data-index="${index}">`;
+            imagesHtml += `<img src="${project.img}" alt="Project ${index+1}" class="${imgClass}" data-index="${index}" onclick="window.open('${project.link}', '_blank')" style="cursor: pointer;">`;
 
             const num = (index + 1).toString().padStart(2, '0');
             const tagsHtml = project.tags.map(tag => `<span class="work-tag">${tag}</span>`).join('');
@@ -105,7 +114,7 @@ function renderProjects() {
 
             mCardsHtml += `
                 <div class="m-work-card">
-                    <div class="m-project-img">
+                    <div class="m-project-img" onclick="window.open('${project.link}', '_blank')" style="cursor: pointer;">
                         <img src="${project.img}" loading="lazy" alt="Project ${index+1}">
                         <div class="m-img-overlay"></div>
                     </div>
@@ -455,19 +464,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 9. Contact Modal Flow
-    const openContactModalBtn = document.getElementById('openContactModal');
+    const openModalBtns = document.querySelectorAll('.open-contact-modal');
     const contactModal = document.getElementById('contactModal');
     const closeContactModalBtn = document.getElementById('closeContactModal');
     const userNameInput = document.getElementById('userName');
     const userMessageInput = document.getElementById('userMessage');
     const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
 
-    if (openContactModalBtn && contactModal && closeContactModalBtn) {
+    if (contactModal && closeContactModalBtn) {
         // Open Modal
-        openContactModalBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            contactModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent bg scrolling
+        openModalBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                contactModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent bg scrolling
+            });
         });
 
         // Close Modal
