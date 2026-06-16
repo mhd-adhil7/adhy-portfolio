@@ -51,6 +51,15 @@ const projectsData = [
         link: "https://vyram-jewells-frontend.777adhiii.workers.dev/",
         role: "UI/UX Designer / Developer",
         tools: "React / CSS"
+    },
+    {
+        title: "KM Fencing –<br><strong>Fencing Solutions Landing Page</strong>",
+        desc: "A premium and conversion-focused landing page for KM Group Fencing Solutions, showcasing expert workmanship, high-quality materials, and customized fencing designs across Kerala with a solid 8-year warranty.",
+        img: "./assets/mockups/project5.png",
+        tags: ["Landing Page", "UI/UX Design"],
+        link: "https://wa.me/919645298000?text=Hi%20KM%20Group%20Fencing,%20I'm%20interested%20in%20your%20services",
+        role: "UI/UX Designer / Developer",
+        tools: "Figma / HTML / CSS"
     }
 ];
 
