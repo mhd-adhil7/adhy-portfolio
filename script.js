@@ -21,18 +21,18 @@ const projectsData = [
         desc: "A smart expense management application designed to help users track spending, manage budgets, and gain better financial control through a clean and intuitive user experience.",
         img: "./assets/mockups/project1.png",
         tags: ["Mobile App", "UI/UX Design"],
-        link: "https://www.figma.com/design/F6FZ9YNZA1rvLP2UxXoJi8/Untitled?node-id=0-1&t=aJsFImDThCONE8hL-1",
+        link: "case-study-smartbudget.html",
         role: "UI/UX Designer",
         tools: "Figma / React"
     },
     {
-        title: "Golden Ocean –<br><strong>Investment & Trade Platform</strong>",
-        desc: "Designed a professional investment and trading platform with a focus on clarity, trust, and usability, enabling users to explore services and manage financial activities with ease.",
-        img: "./assets/mockups/project2.png",
-        tags: ["Web Platform", "Investment & Trade"],
-        link: "https://golden-ocean.vercel.app/",
-        role: "UI/UX Designer",
-        tools: "Figma / React"
+        title: "CRM & ERP Dashboard –<br><strong>Business Operations Control</strong>",
+        desc: "An enterprise-grade CRM and ERP portal designed to unify customer management, resource planning, and operations analytics into a single high-performance dashboard.",
+        img: "./assets/mockups/crm-dashboard.png",
+        tags: ["Web Platform", "Enterprise Dashboard"],
+        link: "case-study-crm-dashboard.html",
+        role: "UI/UX Designer / Developer",
+        tools: "Figma / React / Tailwind"
     },
     {
         title: "FoodChoice –<br><strong>Food Ordering App</strong>",
@@ -237,6 +237,64 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 1c. Reusable Mobile Snap-Carousel Dots & Active Card Class Sync
+    function initMobileCarousel(containerId, dotsId, cardClass) {
+        const container = document.getElementById(containerId);
+        const dotsContainer = document.getElementById(dotsId);
+        if (!container || !dotsContainer) return;
+        
+        const dots = dotsContainer.querySelectorAll('span');
+        const cards = container.querySelectorAll('.' + cardClass);
+        if (cards.length === 0 || dots.length === 0) return;
+        
+        function updateActiveState(activeIndex) {
+            if (window.innerWidth <= 768) {
+                dots.forEach((dot, idx) => {
+                    if (idx === activeIndex) dot.classList.add('active');
+                    else dot.classList.remove('active');
+                });
+                
+                cards.forEach((card, idx) => {
+                    if (idx === activeIndex) {
+                        card.classList.add('active-card');
+                    } else {
+                        card.classList.remove('active-card');
+                    }
+                });
+            } else {
+                cards.forEach(card => card.classList.remove('active-card'));
+            }
+        }
+        
+        // Initial set
+        updateActiveState(0);
+        
+        // Scroll listener
+        container.addEventListener('scroll', () => {
+            if (window.innerWidth <= 768) {
+                const scrollLeft = container.scrollLeft;
+                const cardWidth = cards[0].offsetWidth + 16; // card width + gap
+                const activeIndex = Math.min(cards.length - 1, Math.max(0, Math.round(scrollLeft / cardWidth)));
+                updateActiveState(activeIndex);
+            }
+        });
+
+        // Resize listener
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                cards.forEach(card => card.classList.remove('active-card'));
+            } else {
+                updateActiveState(0);
+            }
+        });
+    }
+
+    // Initialize mobile carousels
+    initMobileCarousel('designSkillsCards', 'designSkillsDots', 'skill-premium-card');
+    initMobileCarousel('devSkillsCards', 'devSkillsDots', 'skill-premium-card');
+    initMobileCarousel('processTimeline', 'processDots', 'process-node');
+
+
     // 2. Smooth Scroll for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -246,6 +304,32 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    // 2b. Navbar Scroll Blur effect
+    const navbar = document.getElementById('navbar');
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    }
+
+    // 2c. Design Process Horizontal Timeline Buttons Click Handlers
+    const processTimeline = document.getElementById('processTimeline');
+    const prevProcess = document.getElementById('prevProcess');
+    const nextProcess = document.getElementById('nextProcess');
+
+    if (processTimeline && prevProcess && nextProcess) {
+        prevProcess.addEventListener('click', () => {
+            processTimeline.scrollBy({ left: -320, behavior: 'smooth' });
+        });
+        nextProcess.addEventListener('click', () => {
+            processTimeline.scrollBy({ left: 320, behavior: 'smooth' });
+        });
+    }
 
     // 3. Simple Intersection Observer for Fade In Up Animation
     const observerOptions = {
@@ -262,13 +346,33 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Add animation classes to elements
-    const fadeElements = document.querySelectorAll('.hero-left, .code-card, .about-text-content, .services-split-container, .m-svc-card, .work-header, .pinned-card, .m-work-card, .faq-left-card, .faq-accordion, .footer-card');
+    const fadeElements = document.querySelectorAll('.hero-left, .code-card, .about-text-content, .services-split-container, .m-svc-card, .work-header, .pinned-card, .m-work-card, .faq-left-card, .faq-accordion, .footer-card, .process-node, .skills-header, .process-header');
     fadeElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         observer.observe(el);
     });
+
+    // 3b. Dedicated Intersection Observer for Staggered Skills Cards
+    const skillsGrid = document.querySelector('.skills-grid-wrapper');
+    if (skillsGrid) {
+        const skillsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const cards = entry.target.querySelectorAll('.skill-premium-card');
+                    cards.forEach((card, index) => {
+                        card.style.transition = `opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)`;
+                        setTimeout(() => {
+                            card.classList.add('animated');
+                        }, index * 150); // 0.15s stagger
+                    });
+                    skillsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.05 });
+        skillsObserver.observe(skillsGrid);
+    }
 
     // Add a class for the visible state
     const style = document.createElement('style');

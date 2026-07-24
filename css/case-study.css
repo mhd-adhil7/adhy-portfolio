@@ -1,0 +1,642 @@
+/* Case Study Stylesheet */
+
+/* ==========================================
+   1. Page Layout & Reset
+   ========================================== */
+.cs-body {
+    background-color: #ffffff;
+    color: #0a0a0a;
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Custom Navigation */
+.cs-navbar {
+    position: fixed;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.cs-nav-pill {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 14px 32px;
+    border-radius: var(--radius-full);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.cs-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.cs-back-btn:hover {
+    color: var(--text-color);
+}
+
+.cs-nav-logo img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0);
+}
+
+/* ==========================================
+   2. Case Study Hero Section
+   ========================================== */
+.cs-hero {
+    padding: 160px 0 80px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.cs-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.cs-hero-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.cs-hero-tag {
+    background: rgba(0, 0, 0, 0.04);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.cs-hero-title {
+    font-size: 4rem;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 24px;
+    letter-spacing: -0.03em;
+}
+
+.cs-hero-subtitle {
+    font-size: 1.35rem;
+    color: #4b5563;
+    max-width: 800px;
+    line-height: 1.6;
+    margin-bottom: 60px;
+}
+
+/* Metadata Grid */
+.cs-meta-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    padding-top: 40px;
+}
+
+.cs-meta-item h4 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #9ca3af;
+    margin-bottom: 12px;
+}
+
+.cs-meta-item p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+/* Hero Mockup image */
+.cs-hero-mockup-wrapper {
+    margin-top: 60px;
+    border-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    aspect-ratio: 16/9;
+}
+
+.cs-hero-mockup-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ==========================================
+   3. Content Section Layout
+   ========================================== */
+.cs-section {
+    padding: 100px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.cs-section-header {
+    margin-bottom: 48px;
+}
+
+.cs-section-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #4f46e5;
+    background: rgba(79, 70, 229, 0.08);
+    padding: 6px 14px;
+    border-radius: 30px;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.cs-section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.cs-section-desc {
+    font-size: 1.15rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    max-width: 850px;
+}
+
+/* Cards & Layout Utilities */
+.cs-cards-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.cs-content-card {
+    background: #f9fafb;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 24px;
+    padding: 40px;
+}
+
+.cs-content-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+}
+
+.cs-content-card p {
+    font-size: 1rem;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   4. Feature Specific Elements
+   ========================================== */
+
+/* Research Section */
+.cs-research-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.cs-stat-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.01);
+}
+
+.cs-stat-val {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #4f46e5;
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+}
+
+.cs-stat-lbl {
+    font-size: 0.9rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+/* User Persona Info */
+.cs-persona-card {
+    display: flex;
+    gap: 30px;
+    background: #f9fafb;
+    border-radius: 24px;
+    padding: 40px;
+    border: 1px solid rgba(0,0,0,0.04);
+    margin-top: 40px;
+}
+
+.cs-persona-img-placeholder {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    color: #4f46e5;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.cs-persona-details h3 {
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.cs-persona-tagline {
+    font-style: italic;
+    color: #6b7280;
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+}
+
+.cs-persona-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.cs-persona-col h4 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #1f2937;
+}
+
+.cs-persona-col ul {
+    list-style: disc;
+    padding-left: 20px;
+    color: #4b5563;
+    font-size: 0.95rem;
+}
+
+.cs-persona-col li {
+    margin-bottom: 8px;
+}
+
+/* User Flow Section */
+.cs-flow-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background: #f9fafb;
+    padding: 60px 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(0,0,0,0.04);
+}
+
+.cs-flow-step {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    padding: 18px 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    min-width: 200px;
+    text-align: center;
+    position: relative;
+}
+
+.cs-flow-arrow {
+    color: #9ca3af;
+    font-size: 1.5rem;
+}
+
+/* Wireframe Skeleton Drawing */
+.cs-wireframe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.cs-wireframe-screen {
+    border: 2px dashed rgba(0, 0, 0, 0.15);
+    background: #fafafa;
+    aspect-ratio: 9/16;
+    border-radius: 24px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cs-wire-header {
+    height: 24px;
+    border-bottom: 1.5px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cs-wire-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.15);
+}
+
+.cs-wire-hero {
+    height: 120px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 12px;
+    border: 1.5px dashed rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cs-wire-hero::after {
+    content: '✖';
+    color: rgba(0,0,0,0.1);
+    font-size: 1.5rem;
+}
+
+.cs-wire-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cs-wire-line-long {
+    height: 8px;
+    width: 90%;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.cs-wire-line-mid {
+    height: 8px;
+    width: 60%;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.cs-wire-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: auto;
+}
+
+.cs-wire-block {
+    height: 50px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    border: 1.5px dashed rgba(0,0,0,0.1);
+}
+
+/* UI Design & Design System */
+.cs-ds-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+}
+
+.cs-color-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cs-swatch-card {
+    flex: 1 0 120px;
+    text-align: center;
+}
+
+.cs-swatch-color {
+    height: 80px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+    margin-bottom: 10px;
+}
+
+.cs-swatch-hex {
+    font-family: monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.cs-swatch-name {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+/* Typography styles grid */
+.cs-typo-showcase {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cs-typo-item {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    padding-bottom: 12px;
+}
+
+.cs-typo-label {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    width: 60px;
+}
+
+.cs-typo-font {
+    font-weight: 700;
+    color: #111827;
+}
+
+/* Final Screens Showcase */
+.cs-screens-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.cs-screen-card {
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cs-screen-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Results Metrics */
+.cs-results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.cs-result-card {
+    background: #f9fafb;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.cs-result-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #10b981; /* Green */
+    margin-bottom: 10px;
+    font-family: var(--font-heading);
+}
+
+.cs-result-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 6px;
+}
+
+.cs-result-desc {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+/* Call To Action Footer */
+.cs-cta-section {
+    padding: 120px 0;
+    background-color: #f8f8f8;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,0.04);
+}
+
+.cs-cta-section h2 {
+    font-size: 3rem;
+    margin-bottom: 24px;
+    font-weight: 700;
+}
+
+.cs-cta-section p {
+    font-size: 1.15rem;
+    color: #4b5563;
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.cs-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    background: #111827;
+    color: #ffffff;
+    padding: 16px 36px;
+    border-radius: 999px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.cs-btn-primary:hover {
+    background: #1f2937;
+    transform: scale(1.03);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* ==========================================
+   5. Responsive Design
+   ========================================== */
+@media (max-width: 1024px) {
+    .cs-hero-title {
+        font-size: 3rem;
+    }
+    
+    .cs-meta-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+    
+    .cs-cards-grid-2, .cs-ds-grid, .cs-screens-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cs-hero {
+        padding-top: 120px;
+    }
+    
+    .cs-hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .cs-section-title {
+        font-size: 1.8rem;
+    }
+    
+    .cs-research-stats, .cs-results-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .cs-persona-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+    .cs-persona-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .cs-wireframe-grid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}

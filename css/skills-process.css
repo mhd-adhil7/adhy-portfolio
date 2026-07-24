@@ -1,0 +1,591 @@
+/* Skills & Design Process Custom Styles */
+
+/* ==========================================
+   1. Skills Section
+   ========================================== */
+.skills-section {
+    padding: 120px 0;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.skills-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.skills-header .section-tag-text {
+    background-color: #e5e7eb;
+    color: #4b5563;
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+}
+
+.skills-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #111827;
+    font-family: var(--font-heading);
+}
+
+/* Skills 2-Column Grid */
+.skills-grid-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+}
+
+.skills-column {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.skills-column-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+    font-family: var(--font-heading);
+}
+
+.column-title-icon {
+    color: #4f46e5;
+    flex-shrink: 0;
+}
+
+.skills-cards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Premium Skill Card Style */
+.skill-premium-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px 32px;
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.01), 
+                inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease,
+                background-color 0.4s ease;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* Class added via ScrollTrigger for animation */
+.skill-premium-card.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skill-premium-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    background: rgba(255, 255, 255, 0.65);
+    border-color: rgba(79, 70, 229, 0.18);
+    box-shadow: 0 24px 48px rgba(79, 70, 229, 0.04), 
+                0 8px 16px rgba(0, 0, 0, 0.02), 
+                inset 0 0 0 1px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Card Icon Wrap */
+.skill-icon-wrap {
+    font-size: 1.8rem;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 18px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.4s ease;
+    flex-shrink: 0;
+}
+
+.skill-premium-card:hover .skill-icon-wrap {
+    transform: rotate(5deg) scale(1.08);
+    background-color: rgba(79, 70, 229, 0.06);
+}
+
+/* Card Info */
+.skill-card-info {
+    display: flex;
+    flex-direction: column;
+    padding-right: 80px; /* Leave space for floating level badge */
+}
+
+.skill-name {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+}
+
+.skill-desc {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+/* Floating Badges */
+.skill-badge {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-expert {
+    background: rgba(16, 185, 129, 0.06);
+    color: #10b981;
+    border: 1px solid rgba(16, 185, 129, 0.12);
+}
+
+.badge-advanced {
+    background: rgba(79, 70, 229, 0.06);
+    color: #4f46e5;
+    border: 1px solid rgba(79, 70, 229, 0.12);
+}
+
+.badge-intermediate {
+    background: rgba(245, 158, 11, 0.06);
+    color: #f59e0b;
+    border: 1px solid rgba(245, 158, 11, 0.12);
+}
+
+/* Floating Blurred Blobs */
+.skills-blob-1 {
+    position: absolute;
+    top: 10%;
+    left: -5%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, rgba(79, 70, 229, 0) 70%);
+    filter: blur(80px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.skills-blob-2 {
+    position: absolute;
+    bottom: 10%;
+    right: -5%;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, rgba(16, 185, 129, 0) 70%);
+    filter: blur(95px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.skills-blob-3 {
+    position: absolute;
+    top: 40%;
+    left: 45%;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.04) 0%, rgba(236, 72, 153, 0) 70%);
+    filter: blur(85px);
+    z-index: 1;
+}
+
+
+
+
+/* ==========================================
+   2. Design Process Section
+   ========================================== */
+.process-section {
+    padding: 120px 0;
+    background-color: #f8f8f8;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.process-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.process-header {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.process-header .section-tag-text {
+    background-color: #e5e7eb;
+    color: #4b5563;
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    margin-bottom: 16px;
+}
+
+.process-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #111827;
+    font-family: var(--font-heading);
+}
+
+/* Horizontal Timeline Scroller */
+.process-timeline-wrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.process-timeline-scroll {
+    display: flex;
+    gap: 40px;
+    overflow-x: auto;
+    padding: 40px 10px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE/Edge */
+    scroll-behavior: smooth;
+}
+
+.process-timeline-scroll::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+/* Timeline Cards */
+.process-node {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    padding: 32px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s ease;
+}
+
+.process-node:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Node Connector Line */
+.process-timeline-line {
+    position: absolute;
+    top: 50px;
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.04);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.process-node-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.process-step-num {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #4f46e5;
+    background: rgba(79, 70, 229, 0.08);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.process-step-icon {
+    color: #6b7280;
+    background: #f9fafb;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.process-node-title {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+}
+
+.process-node-desc {
+    font-size: 0.95rem;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+/* Custom Scroll Indicators */
+.process-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-top: 30px;
+}
+
+.process-scroll-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    color: #111827;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.process-scroll-btn:hover {
+    background: #111827;
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.process-scroll-btn:active {
+    transform: scale(0.95);
+}
+
+.process-scroll-btn svg {
+    stroke-width: 2.5px;
+}
+
+
+/* ==========================================
+   3. Responsive Media Queries
+   ========================================== */
+@media (max-width: 1024px) {
+    .skills-grid {
+        gap: 30px;
+    }
+    
+    .skills-glass-card {
+        padding: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Utility hide/show classes */
+    .mobile-only {
+        display: flex !important;
+    }
+    
+    .skills-section {
+        padding: 80px 0;
+    }
+    
+    .skills-title, .process-title {
+        font-size: 2.2rem;
+    }
+    
+    /* 1. Skills Section Mobile Swiper */
+    .skills-grid-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .skills-column {
+        gap: 16px;
+    }
+
+    .skills-cards-list {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 16px !important;
+        padding: 20px 6vw !important;
+        margin-left: -6vw !important;
+        width: 112vw !important;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE/Edge */
+    }
+
+    .skills-cards-list::-webkit-scrollbar {
+        display: none; /* Chrome/Safari */
+    }
+
+    .skill-premium-card {
+        flex: 0 0 84vw !important;
+        scroll-snap-align: center !important;
+        opacity: 0.45 !important;
+        transform: scale(0.95) !important;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.4s ease,
+                    border-color 0.4s ease !important;
+    }
+
+    /* Active Slide State */
+    .skill-premium-card.active-card {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+        background: rgba(255, 255, 255, 0.65);
+        border-color: rgba(79, 70, 229, 0.15);
+        box-shadow: 0 20px 40px rgba(79, 70, 229, 0.04), 0 8px 16px rgba(0, 0, 0, 0.02) !important;
+    }
+
+    /* Skills Pagination Dots */
+    .skills-carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .skill-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.1);
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .skill-dot.active {
+        background: #4f46e5;
+        transform: scale(1.1);
+        width: 20px;
+        border-radius: 4px;
+    }
+
+
+    /* 2. Design Process Mobile Swiper */
+    .process-section {
+        padding: 80px 0;
+    }
+
+    .process-timeline-scroll {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        gap: 20px !important;
+        padding: 20px 6vw !important;
+        margin-left: -6vw !important;
+        width: 112vw !important;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .process-timeline-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .process-node {
+        flex: 0 0 84vw !important;
+        scroll-snap-align: center !important;
+        opacity: 0.45 !important;
+        transform: scale(0.95) !important;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                    box-shadow 0.4s ease,
+                    border-color 0.4s ease !important;
+    }
+
+    /* Active Slide State */
+    .process-node.active-card {
+        opacity: 1 !important;
+        transform: scale(1) !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04) !important;
+        border-color: rgba(79, 70, 229, 0.15) !important;
+    }
+
+    .process-timeline-line {
+        display: none;
+    }
+
+    .process-controls {
+        display: none;
+    }
+
+    /* Process Pagination Dots */
+    .process-carousel-dots {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .process-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.1);
+        transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .process-dot.active {
+        background: #4f46e5;
+        transform: scale(1.1);
+        width: 20px;
+        border-radius: 4px;
+    }
+}
