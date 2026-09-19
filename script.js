@@ -21,16 +21,18 @@ const projectsData = [
         desc: "A smart expense management application designed to help users track spending, manage budgets, and gain better financial control through a clean and intuitive user experience.",
         img: "./assets/mockups/project1.png",
         tags: ["Mobile App", "UI/UX Design"],
+        url: "case-study-smartbudget.html",
         link: "case-study-smartbudget.html",
         role: "UI/UX Designer",
         tools: "Figma / React"
     },
     {
-        title: "CRM & ERP Dashboard –<br><strong>Business Operations Control</strong>",
-        desc: "An enterprise-grade CRM and ERP portal designed to unify customer management, resource planning, and operations analytics into a single high-performance dashboard.",
-        img: "./assets/mockups/crm-dashboard.png",
-        tags: ["Web Platform", "Enterprise Dashboard"],
-        link: "case-study-crm-dashboard.html",
+        title: "Bizpole Books –<br><strong>Accounting & Business Management</strong>",
+        desc: "A modern SaaS platform designed to simplify accounting, bookkeeping, and business financial management through a clean, intuitive, and efficient dashboard experience.",
+        img: "./assets/mockups/bizpole-books.png",
+        tags: ["Web Platform", "SaaS Dashboard"],
+        url: "https://www.figma.com/design/j4VsEbGBBn3uKoq8Xx48WN/Bizpole-Books?node-id=1552-2752&t=4vZFJDgEPrw1s3gi-0",
+        link: "https://www.figma.com/design/j4VsEbGBBn3uKoq8Xx48WN/Bizpole-Books?node-id=1552-2752&t=4vZFJDgEPrw1s3gi-0",
         role: "UI/UX Designer / Developer",
         tools: "Figma / React / Tailwind"
     },
@@ -39,6 +41,7 @@ const projectsData = [
         desc: "A modern food ordering application crafted to provide a fast, seamless, and enjoyable user experience, making it easy for users to browse, select, and order their favorite meals.",
         img: "./assets/mockups/project3.png",
         tags: ["Mobile App", "Food Ordering"],
+        url: "https://www.figma.com/design/re9ZDvpsSjzurHDKCQsO9s/Untitled?node-id=0-1&t=CZhfO21BdgwtoTdX-1",
         link: "https://www.figma.com/design/re9ZDvpsSjzurHDKCQsO9s/Untitled?node-id=0-1&t=CZhfO21BdgwtoTdX-1",
         role: "UI/UX Designer",
         tools: "Figma / React"
@@ -48,7 +51,8 @@ const projectsData = [
         desc: "An elegant and premium e-commerce platform designed for fine jewelry, providing a seamless shopping experience with a focus on luxury, aesthetics, and user-friendly navigation.",
         img: "./assets/mockups/project4.png",
         tags: ["Web Platform", "E-commerce"],
-        link: "https://vyram-jewells-frontend.777adhiii.workers.dev/",
+        url: "https://www.vyramjewells.in/",
+        link: "https://www.vyramjewells.in/",
         role: "UI/UX Designer / Developer",
         tools: "React / CSS"
     },
@@ -57,11 +61,15 @@ const projectsData = [
         desc: "A premium and conversion-focused landing page for KM Group Fencing Solutions, showcasing expert workmanship, high-quality materials, and customized fencing designs across Kerala with a solid 8-year warranty.",
         img: "./assets/mockups/project5.png",
         tags: ["Landing Page", "UI/UX Design"],
+        url: "https://km-group-fencing.vercel.app/",
         link: "https://km-group-fencing.vercel.app/",
         role: "UI/UX Designer / Developer",
         tools: "Figma / HTML / CSS"
     }
 ];
+
+// Flag to temporarily disable all click/navigation functionality ONLY in the Work Projects section
+const DISABLE_WORK_NAVIGATION = true;
 
 function renderProjects() {
     const desktopImagesContainer = document.getElementById('desktopImageWrap');
@@ -76,8 +84,23 @@ function renderProjects() {
         let mDotsHtml = '';
 
         projectsData.forEach((project, index) => {
+            const projectUrl = project.url || project.link;
+            const isExternal = /^https?:\/\//i.test(projectUrl);
+            const openAction = DISABLE_WORK_NAVIGATION
+                ? ''
+                : (isExternal
+                    ? `window.open('${projectUrl}', '_blank', 'noopener,noreferrer')`
+                    : `window.location.href='${projectUrl}'`);
+            const targetRel = (!DISABLE_WORK_NAVIGATION && isExternal) ? ' target="_blank" rel="noopener noreferrer"' : '';
+            const btnHref = DISABLE_WORK_NAVIGATION ? 'javascript:void(0)' : projectUrl;
+            const btnClick = DISABLE_WORK_NAVIGATION ? ' onclick="event.preventDefault();"' : '';
+            const btnCursorStyle = DISABLE_WORK_NAVIGATION ? ' style="cursor: default;"' : '';
+
             const imgClass = index === 0 ? 'project-img active' : 'project-img';
-            imagesHtml += `<img src="${project.img}" alt="Project ${index+1}" class="${imgClass}" data-index="${index}" onclick="window.open('${project.link}', '_blank')" style="cursor: pointer;">`;
+            const imgClickAttr = openAction
+                ? ` onclick="${openAction}" style="cursor: pointer;"`
+                : (DISABLE_WORK_NAVIGATION ? ' style="cursor: default;"' : '');
+            imagesHtml += `<img src="${project.img}" alt="Project ${index+1}" class="${imgClass}" data-index="${index}"${imgClickAttr}>`;
 
             const num = (index + 1).toString().padStart(2, '0');
             const tagsHtml = project.tags.map(tag => `<span class="work-tag">${tag}</span>`).join('');
@@ -91,8 +114,13 @@ function renderProjects() {
                 </div>`;
             }
 
+            const cardClick = (!DISABLE_WORK_NAVIGATION && index === 1)
+                ? ` onclick="if(!event.target.closest('a')) window.open('${projectUrl}', '_blank', 'noopener,noreferrer')"`
+                : '';
+            const cardCursor = (!DISABLE_WORK_NAVIGATION && index === 1) ? ' cursor: pointer;' : '';
+
             detailsHtml += `
-                <div class="project-details" data-index="${index}">
+                <div class="project-details" data-index="${index}"${cardClick}${cardCursor ? ` style="${cardCursor}"` : ''}>
                     <div class="work-card-header">
                         <span class="work-number">${num}</span>
                         <div class="work-tags">
@@ -105,7 +133,7 @@ function renderProjects() {
                         ${optionalInfoHtml}
                     </div>
                     <div class="work-card-footer">
-                        <a href="${project.link}" class="view-project-btn" target="_blank" rel="noopener noreferrer" aria-label="View Project">View Project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        <a href="${btnHref}" class="view-project-btn"${targetRel}${btnClick}${btnCursorStyle} aria-label="View Project">View Project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                     </div>
                 </div>
             `;
@@ -121,9 +149,17 @@ function renderProjects() {
                 </div>`;
             }
 
+            const mCardClick = (!DISABLE_WORK_NAVIGATION && index === 1)
+                ? ` onclick="if(!event.target.closest('a') && !event.target.closest('.m-project-img')) window.open('${projectUrl}', '_blank', 'noopener,noreferrer')"`
+                : '';
+            const mCardCursor = (!DISABLE_WORK_NAVIGATION && index === 1) ? ' cursor: pointer;' : '';
+            const mImgClickAttr = openAction
+                ? ` onclick="${openAction}" style="cursor: pointer;"`
+                : (DISABLE_WORK_NAVIGATION ? ' style="cursor: default;"' : '');
+
             mCardsHtml += `
-                <div class="m-work-card">
-                    <div class="m-project-img" onclick="window.open('${project.link}', '_blank')" style="cursor: pointer;">
+                <div class="m-work-card"${mCardClick}${mCardCursor ? ` style="${mCardCursor}"` : ''}>
+                    <div class="m-project-img"${mImgClickAttr}>
                         <img src="${project.img}" loading="lazy" alt="Project ${index+1}">
                         <div class="m-img-overlay"></div>
                     </div>
@@ -134,7 +170,7 @@ function renderProjects() {
                         <h3 class="m-title">${project.title}</h3>
                         <p class="m-desc" style="${mOptionalInfoHtml ? 'margin-bottom: 12px;' : ''}">${project.desc}</p>
                         ${mOptionalInfoHtml}
-                        <a href="${project.link}" class="m-view-btn" target="_blank" rel="noopener noreferrer" aria-label="View Project">View Project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                        <a href="${btnHref}" class="m-view-btn"${targetRel}${btnClick}${btnCursorStyle} aria-label="View Project">View Project <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                     </div>
                 </div>
             `;
@@ -182,6 +218,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     renderProjects();
+
+    // Temporarily intercept and disable all clicks/navigation ONLY in Work Projects section
+    if (typeof DISABLE_WORK_NAVIGATION !== 'undefined' && DISABLE_WORK_NAVIGATION) {
+        const workSection = document.getElementById('work');
+        if (workSection) {
+            workSection.addEventListener('click', (e) => {
+                const clickable = e.target.closest('a, .project-img, .m-project-img, .project-details, .m-work-card');
+                if (clickable) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+        }
+    }
 
     // 1. GSAP ScrollTrigger for Projects Section
     if (window.gsap && window.ScrollTrigger) {
@@ -290,8 +340,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Initialize mobile carousels
-    initMobileCarousel('designSkillsCards', 'designSkillsDots', 'skill-premium-card');
-    initMobileCarousel('devSkillsCards', 'devSkillsDots', 'skill-premium-card');
     initMobileCarousel('processTimeline', 'processDots', 'process-node');
 
 
@@ -346,33 +394,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Add animation classes to elements
-    const fadeElements = document.querySelectorAll('.hero-left, .code-card, .about-text-content, .services-split-container, .m-svc-card, .work-header, .pinned-card, .m-work-card, .faq-left-card, .faq-accordion, .footer-card, .process-node, .skills-header, .process-header');
+    const fadeElements = document.querySelectorAll('.hero-left, .code-card, .about-text-content, .services-split-container, .m-svc-card, .work-header, .pinned-card, .m-work-card, .faq-left-card, .faq-accordion, .footer-card, .process-node, .process-header');
     fadeElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
         observer.observe(el);
     });
-
-    // 3b. Dedicated Intersection Observer for Staggered Skills Cards
-    const skillsGrid = document.querySelector('.skills-grid-wrapper');
-    if (skillsGrid) {
-        const skillsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const cards = entry.target.querySelectorAll('.skill-premium-card');
-                    cards.forEach((card, index) => {
-                        card.style.transition = `opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)`;
-                        setTimeout(() => {
-                            card.classList.add('animated');
-                        }, index * 150); // 0.15s stagger
-                    });
-                    skillsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.05 });
-        skillsObserver.observe(skillsGrid);
-    }
 
     // Add a class for the visible state
     const style = document.createElement('style');
