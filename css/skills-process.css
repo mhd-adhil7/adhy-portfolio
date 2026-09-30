@@ -39,10 +39,11 @@
 }
 
 .process-title {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 400;
+    font-style: normal;
     color: #111827;
-    font-family: var(--font-heading);
+    font-family: "Fraunces", serif;
 }
 
 /* Horizontal Timeline Scroller */
@@ -111,7 +112,7 @@
 }
 
 .process-step-num {
-    font-family: var(--font-heading);
+    font-family: "Fraunces", serif;
     font-size: 1.1rem;
     font-weight: 700;
     color: #4f46e5;
@@ -137,16 +138,19 @@
 }
 
 .process-node-title {
-    font-size: 1.35rem;
-    font-weight: 600;
+    font-size: 1.45rem;
+    font-weight: 400;
+    font-style: normal;
+    font-family: "Fraunces", serif;
     color: #111827;
     margin-bottom: 12px;
     letter-spacing: -0.01em;
 }
 
 .process-node-desc {
-    font-size: 0.95rem;
-    color: #6b7280;
+    font-family: "Fraunces", serif;
+    font-size: 1rem;
+    color: #4b5563;
     line-height: 1.6;
 }
 

@@ -143,7 +143,7 @@ function renderProjects() {
             let mOptionalInfoHtml = '';
             if (project.role && project.tools) {
                 mOptionalInfoHtml = `
-                <div class="m-work-info" style="margin-bottom: 24px; font-size: 0.9rem; color: #6b7280; font-family: var(--font-body);">
+                <div class="m-work-info" style="margin-bottom: 24px; font-size: 0.9rem; color: #6b7280; font-family: 'Fraunces', serif;">
                     <div style="margin-bottom: 4px;"><strong>Role:</strong> ${project.role}</div>
                     <div><strong>Tools:</strong> ${project.tools}</div>
                 </div>`;
@@ -339,8 +339,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Initialize mobile carousels
-    initMobileCarousel('processTimeline', 'processDots', 'process-node');
+
 
 
     // 2. Smooth Scroll for Anchor Links
@@ -353,30 +352,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2b. Navbar Scroll Blur effect
+    // 2b. Navbar Scroll Blur effect (optimized with requestAnimationFrame and state caching)
     const navbar = document.getElementById('navbar');
     if (navbar) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
+        let isScrolled = false;
+        let ticking = false;
+
+        const updateNavbar = () => {
+            const shouldBeScrolled = window.scrollY > 30;
+            if (shouldBeScrolled !== isScrolled) {
+                isScrolled = shouldBeScrolled;
+                if (isScrolled) {
+                    navbar.classList.add('navbar-scrolled');
+                } else {
+                    navbar.classList.remove('navbar-scrolled');
+                }
             }
-        });
-    }
+            ticking = false;
+        };
 
-    // 2c. Design Process Horizontal Timeline Buttons Click Handlers
-    const processTimeline = document.getElementById('processTimeline');
-    const prevProcess = document.getElementById('prevProcess');
-    const nextProcess = document.getElementById('nextProcess');
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateNavbar);
+                ticking = true;
+            }
+        }, { passive: true });
 
-    if (processTimeline && prevProcess && nextProcess) {
-        prevProcess.addEventListener('click', () => {
-            processTimeline.scrollBy({ left: -320, behavior: 'smooth' });
-        });
-        nextProcess.addEventListener('click', () => {
-            processTimeline.scrollBy({ left: 320, behavior: 'smooth' });
-        });
+        // Initialize state on page load
+        updateNavbar();
     }
 
     // 3. Simple Intersection Observer for Fade In Up Animation
@@ -394,7 +397,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, observerOptions);
 
     // Add animation classes to elements
-    const fadeElements = document.querySelectorAll('.hero-left, .code-card, .about-text-content, .services-split-container, .m-svc-card, .work-header, .pinned-card, .m-work-card, .faq-left-card, .faq-accordion, .footer-card, .process-node, .process-header');
+    const fadeElements = document.querySelectorAll('.hero-left, .code-card, .about-text-content, .services-split-container, .m-svc-card, .work-header, .pinned-card, .m-work-card, .faq-left-card, .faq-accordion, .footer-card');
     fadeElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';

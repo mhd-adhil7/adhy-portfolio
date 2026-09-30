@@ -6,20 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muhammad Adhil Mv | UI/UX Designer</title>
 
-    <!-- Fonts -->
+    <!-- Font: Fraunces Preloads & Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&display=swap"
-        rel="stylesheet">
+    <link rel="preload" href="assets/fonts/fraunces-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="css/about.css">
-    <link rel="stylesheet" href="css/faq.css">
-    <link rel="stylesheet" href="css/services.css">
-    <link rel="stylesheet" href="css/portfolio.css">
-    <link rel="stylesheet" href="css/skills-process.css?v=1.2">
+    <link rel="stylesheet" href="style.css?v=fraunces">
+    <link rel="stylesheet" href="css/about.css?v=fraunces">
+    <link rel="stylesheet" href="css/faq.css?v=fraunces">
+    <link rel="stylesheet" href="css/services.css?v=fraunces">
+    <link rel="stylesheet" href="css/portfolio.css?v=fraunces">
 </head>
 
 <body>
@@ -135,78 +134,154 @@
         </div>
     </section>
 
-    <!-- Projects Marquee -->
-    <div class="projects-marquee">
-        <div class="projects-track">
-            <!-- First set of images -->
-            <div class="project-card"><a
-                    href="https://www.figma.com/design/F6FZ9YNZA1rvLP2UxXoJi8/Untitled?node-id=0-1&t=aJsFImDThCONE8hL-1"><img
-                        src="./assets/mockups/project1.png" alt="Card 1"></a></div>
-            <div class="project-card"><a href="https://golden-ocean.vercel.app/"><img
-                        src="./assets/mockups/project2.png" alt="Card 2"></a></div>
-            <div class="project-card"><a
-                    href="https://www.figma.com/design/re9ZDvpsSjzurHDKCQsO9s/Untitled?node-id=0-1&t=CZhfO21BdgwtoTdX-1"><img
-                        src="./assets/mockups/project3.png" alt="Card 3"></a></div>
-            <div class="project-card"><a href="https://www.vyramjewells.in/" target="_blank" rel="noopener noreferrer"><img
-                        src="./assets/mockups/project4.png" alt="Card 4"></a></div>
-            <div class="project-card"><a href="https://km-group-fencing.vercel.app/"><img
-                        src="./assets/mockups/project5.png" alt="Card 5"></a></div>
-            <!-- Duplicate for seamless loop -->
-            <div class="project-card"><a
-                    href="https://www.figma.com/design/F6FZ9YNZA1rvLP2UxXoJi8/Untitled?node-id=0-1&t=aJsFImDThCONE8hL-1"><img
-                        src="./assets/mockups/project1.png" alt="Card 1"></a></div>
-            <div class="project-card"><a href="https://golden-ocean.vercel.app/"><img
-                        src="./assets/mockups/project2.png" alt="Card 2"></a></div>
-            <div class="project-card"><a
-                    href="https://www.figma.com/design/re9ZDvpsSjzurHDKCQsO9s/Untitled?node-id=0-1&t=CZhfO21BdgwtoTdX-1"><img
-                        src="./assets/mockups/project3.png" alt="Card 3"></a></div>
-            <div class="project-card"><a href="https://www.vyramjewells.in/" target="_blank" rel="noopener noreferrer"><img
-                        src="./assets/mockups/project4.png" alt="Card 4"></a></div>
-            <div class="project-card"><a href="https://km-group-fencing.vercel.app/"><img
-                        src="./assets/mockups/project5.png" alt="Card 5"></a></div>
+    <!-- Projects Marquee & Skills Showcase (Continuous Infinite Horizontal Auto-Scroll) -->
+    <div class="projects-showcase-section" id="projectsShowcase">
+        <!-- Projects Marquee (Continuous Infinite Auto-Scroll to the RIGHT) -->
+        <div class="projects-marquee">
+            <div class="projects-track" id="projectsScrollTrack">
+                <!-- Half 1: Set 1 -->
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/F6FZ9YNZA1rvLP2UxXoJi8/Untitled?node-id=0-1&t=aJsFImDThCONE8hL-1"><img
+                            src="./assets/mockups/project1.png" alt="Card 1"></a></div>
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/j4VsEbGBBn3uKoq8Xx48WN/Bizpole-Books?node-id=1552-2752&p=f&t=vRXbIFJ7i195rrPX-0"><img
+                            src="./assets/mockups/bizpole-books.png" alt="Bizpole Books"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></a></div>
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/re9ZDvpsSjzurHDKCQsO9s/Untitled?node-id=0-1&t=CZhfO21BdgwtoTdX-1"><img
+                            src="./assets/mockups/project3.png" alt="Card 3"></a></div>
+                <div class="project-card"><a href="https://www.vyramjewells.in/" target="_blank"
+                        rel="noopener noreferrer"><img src="./assets/mockups/project4.png" alt="Card 4"></a></div>
+                <div class="project-card"><a href="https://km-group-fencing.vercel.app/"><img
+                            src="./assets/mockups/project5.png" alt="Card 5"></a></div>
+                <!-- Half 1: Set 2 -->
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/F6FZ9YNZA1rvLP2UxXoJi8/Untitled?node-id=0-1&t=aJsFImDThCONE8hL-1"><img
+                            src="./assets/mockups/project1.png" alt="Card 1"></a></div>
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/j4VsEbGBBn3uKoq8Xx48WN/Bizpole-Books?node-id=1552-2752&p=f&t=vRXbIFJ7i195rrPX-0"><img
+                            src="./assets/mockups/bizpole-books.png" alt="Bizpole Books"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></a></div>
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/re9ZDvpsSjzurHDKCQsO9s/Untitled?node-id=0-1&t=CZhfO21BdgwtoTdX-1"><img
+                            src="./assets/mockups/project3.png" alt="Card 3"></a></div>
+                <div class="project-card"><a href="https://www.vyramjewells.in/" target="_blank"
+                        rel="noopener noreferrer"><img src="./assets/mockups/project4.png" alt="Card 4"></a></div>
+                <div class="project-card"><a href="https://km-group-fencing.vercel.app/"><img
+                            src="./assets/mockups/project5.png" alt="Card 5"></a></div>
+                <!-- Half 2: Set 3 -->
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/F6FZ9YNZA1rvLP2UxXoJi8/Untitled?node-id=0-1&t=aJsFImDThCONE8hL-1"><img
+                            src="./assets/mockups/project1.png" alt="Card 1"></a></div>
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/j4VsEbGBBn3uKoq8Xx48WN/Bizpole-Books?node-id=1552-2752&p=f&t=vRXbIFJ7i195rrPX-0"><img
+                            src="./assets/mockups/bizpole-books.png" alt="Bizpole Books"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></a></div>
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/re9ZDvpsSjzurHDKCQsO9s/Untitled?node-id=0-1&t=CZhfO21BdgwtoTdX-1"><img
+                            src="./assets/mockups/project3.png" alt="Card 3"></a></div>
+                <div class="project-card"><a href="https://www.vyramjewells.in/" target="_blank"
+                        rel="noopener noreferrer"><img src="./assets/mockups/project4.png" alt="Card 4"></a></div>
+                <div class="project-card"><a href="https://km-group-fencing.vercel.app/"><img
+                            src="./assets/mockups/project5.png" alt="Card 5"></a></div>
+                <!-- Half 2: Set 4 -->
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/F6FZ9YNZA1rvLP2UxXoJi8/Untitled?node-id=0-1&t=aJsFImDThCONE8hL-1"><img
+                            src="./assets/mockups/project1.png" alt="Card 1"></a></div>
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/j4VsEbGBBn3uKoq8Xx48WN/Bizpole-Books?node-id=1552-2752&p=f&t=vRXbIFJ7i195rrPX-0"><img
+                            src="./assets/mockups/bizpole-books.png" alt="Bizpole Books"
+                            style="width: 100%; height: 100%; object-fit: cover; object-position: center;"></a></div>
+                <div class="project-card"><a
+                        href="https://www.figma.com/design/re9ZDvpsSjzurHDKCQsO9s/Untitled?node-id=0-1&t=CZhfO21BdgwtoTdX-1"><img
+                            src="./assets/mockups/project3.png" alt="Card 3"></a></div>
+                <div class="project-card"><a href="https://www.vyramjewells.in/" target="_blank"
+                        rel="noopener noreferrer"><img src="./assets/mockups/project4.png" alt="Card 4"></a></div>
+                <div class="project-card"><a href="https://km-group-fencing.vercel.app/"><img
+                            src="./assets/mockups/project5.png" alt="Card 5"></a></div>
+            </div>
         </div>
-    </div>
 
-    <!-- 3D Skills Marquee -->
-    <div class="skills-marquee-3d">
-        <div class="skills-track">
-            <span class="skill-item">Figma</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Adobe XD</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">React.js</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Webflow</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Prototyping</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">User Research</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Wireframing</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">HTML/CSS</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Framer</span>
-            <span class="skill-separator">•</span>
-            <!-- Duplicate for seamless loop -->
-            <span class="skill-item">Figma</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Adobe XD</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">React.js</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Webflow</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Prototyping</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">User Research</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Wireframing</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">HTML/CSS</span>
-            <span class="skill-separator">•</span>
-            <span class="skill-item">Framer</span>
-            <span class="skill-separator">•</span>
+        <!-- 3D Skills Marquee (Continuous Infinite Auto-Scroll to the LEFT - Opposite of Projects) -->
+        <div class="skills-marquee-3d">
+            <div class="skills-track" id="skillsScrollTrack">
+                <!-- Half 1: Set 1 -->
+                <span class="skill-item">Figma</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Adobe XD</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">React.js</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Webflow</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Prototyping</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">User Research</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Wireframing</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">HTML/CSS</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Framer</span>
+                <span class="skill-separator">•</span>
+                <!-- Half 1: Set 2 -->
+                <span class="skill-item">Figma</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Adobe XD</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">React.js</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Webflow</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Prototyping</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">User Research</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Wireframing</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">HTML/CSS</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Framer</span>
+                <span class="skill-separator">•</span>
+                <!-- Half 2: Set 3 -->
+                <span class="skill-item">Figma</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Adobe XD</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">React.js</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Webflow</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Prototyping</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">User Research</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Wireframing</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">HTML/CSS</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Framer</span>
+                <span class="skill-separator">•</span>
+                <!-- Half 2: Set 4 -->
+                <span class="skill-item">Figma</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Adobe XD</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">React.js</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Webflow</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Prototyping</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">User Research</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Wireframing</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">HTML/CSS</span>
+                <span class="skill-separator">•</span>
+                <span class="skill-item">Framer</span>
+                <span class="skill-separator">•</span>
+            </div>
         </div>
     </div>
 
@@ -275,7 +350,7 @@
                 </div>
 
                 <div class="about-cta-wrapper">
-                    <a href="./assets/Adhil-cv (1).pdf" download class="btn-download" aria-label="Download CV">
+                    <a href="./assets/mockups/MUHAMMATH_ATHIL_MV_.pdf" download class="btn-download" aria-label="Download CV">
                         Download CV · PDF
                     </a>
                 </div>
@@ -449,120 +524,6 @@
             </div>
     </section>
 
-    <!-- Design Process Section -->
-    <section id="design-process" class="process-section">
-        <div class="container process-container">
-            <div class="process-header">
-                <span class="section-tag-text">MY WORKFLOW</span>
-                <h2 class="process-title">Design Process</h2>
-            </div>
-            
-            <div class="process-timeline-wrapper">
-                <div class="process-timeline-line"></div>
-                
-                <div class="process-timeline-scroll" id="processTimeline">
-                    <!-- Step 1 -->
-                    <div class="process-node">
-                        <div class="process-node-header">
-                            <span class="process-step-num">01</span>
-                            <span class="process-step-icon">🔍</span>
-                        </div>
-                        <h3 class="process-node-title">Research</h3>
-                        <p class="process-node-desc">Analyzing market space, interviewing users, and identifying primary product requirements and gaps.</p>
-                    </div>
-                    
-                    <!-- Step 2 -->
-                    <div class="process-node">
-                        <div class="process-node-header">
-                            <span class="process-step-num">02</span>
-                            <span class="process-step-icon">👤</span>
-                        </div>
-                        <h3 class="process-node-title">User Persona</h3>
-                        <p class="process-node-desc">Constructing archetypes representing core target groups to anchor design decisions around user empathy.</p>
-                    </div>
-                    
-                    <!-- Step 3 -->
-                    <div class="process-node">
-                        <div class="process-node-header">
-                            <span class="process-step-num">03</span>
-                            <span class="process-step-icon">🗺️</span>
-                        </div>
-                        <h3 class="process-node-title">User Flow</h3>
-                        <p class="process-node-desc">Mapping step-by-step pathways to optimize task sequences and minimize user friction.</p>
-                    </div>
-                    
-                    <!-- Step 4 -->
-                    <div class="process-node">
-                        <div class="process-node-header">
-                            <span class="process-step-num">04</span>
-                            <span class="process-step-icon">✏️</span>
-                        </div>
-                        <h3 class="process-node-title">Wireframes</h3>
-                        <p class="process-node-desc">Drafting layout drafts and screen structures to validate content scaling and information priority.</p>
-                    </div>
-                    
-                    <!-- Step 5 -->
-                    <div class="process-node">
-                        <div class="process-node-header">
-                            <span class="process-step-num">05</span>
-                            <span class="process-step-icon">🎨</span>
-                        </div>
-                        <h3 class="process-node-title">UI Design</h3>
-                        <p class="process-node-desc">Composing high-fidelity page interfaces with premium visual detailing, layout, and pixel perfection.</p>
-                    </div>
-                    
-                    <!-- Step 6 -->
-                    <div class="process-node">
-                        <div class="process-node-header">
-                            <span class="process-step-num">06</span>
-                            <span class="process-step-icon">📐</span>
-                        </div>
-                        <h3 class="process-node-title">Design System</h3>
-                        <p class="process-node-desc">Defining color, typography, grids, and components in reusable styles for complete platform visual harmony.</p>
-                    </div>
-                    
-                    <!-- Step 7 -->
-                    <div class="process-node">
-                        <div class="process-node-header">
-                            <span class="process-step-num">07</span>
-                            <span class="process-step-icon">📱</span>
-                        </div>
-                        <h3 class="process-node-title">Prototype</h3>
-                        <p class="process-node-desc">Building interactive, clickable mockups to test animations and collect user validations before coding.</p>
-                    </div>
-                    
-                    <!-- Step 8 -->
-                    <div class="process-node">
-                        <div class="process-node-header">
-                            <span class="process-step-num">08</span>
-                            <span class="process-step-icon">🤝</span>
-                        </div>
-                        <h3 class="process-node-title">Dev Handoff</h3>
-                        <p class="process-node-desc">Packaging code assets, design specs, tokens, and figma documentation to ensure exact coding delivery.</p>
-                    </div>
-                </div>
-                <div class="process-carousel-dots mobile-only" id="processDots">
-                    <span class="process-dot active"></span>
-                    <span class="process-dot"></span>
-                    <span class="process-dot"></span>
-                    <span class="process-dot"></span>
-                    <span class="process-dot"></span>
-                    <span class="process-dot"></span>
-                    <span class="process-dot"></span>
-                    <span class="process-dot"></span>
-                </div>
-                
-                <div class="process-controls">
-                    <button class="process-scroll-btn" id="prevProcess" aria-label="Previous Step">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-                    </button>
-                    <button class="process-scroll-btn" id="nextProcess" aria-label="Next Step">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- FAQ Section -->
     <section id="faq" class="faq-section">

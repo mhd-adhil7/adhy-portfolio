@@ -35,8 +35,7 @@
     /* Deep, soft shadow */
     position: relative;
     z-index: 2;
-    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-    /* Cleaner monospace stack */
+    font-family: "Fraunces", serif;
     transition: transform 0.3s ease;
     border: none;
     /* Removed border for cleaner look */
@@ -186,14 +185,16 @@
 }
 
 .about-heading {
-    font-size: 3.5rem;
+    font-family: "Fraunces", serif;
+    font-style: normal;
+    font-size: 3.8rem;
     /* Large impact heading */
     line-height: 1.1;
-    font-weight: 700;
+    font-weight: 400;
     color: #1F2937;
     /* Dark Grey/Charcoal */
     margin-bottom: 30px;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.01em;
 }
 
 .about-description-group {
@@ -201,10 +202,11 @@
 }
 
 .about-desc {
-    font-size: 1.15rem;
-    color: #6B7280;
+    font-family: "Fraunces", serif;
+    font-size: 1.2rem;
+    color: #4b5563;
     /* Cool Grey */
-    line-height: 1.6;
+    line-height: 1.7;
     margin-bottom: 24px;
     max-width: 520px;
 }

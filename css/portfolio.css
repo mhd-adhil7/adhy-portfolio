@@ -2,7 +2,7 @@
 .premium-work-section {
     padding: 60px 0 120px 0;
     background-color: #f8f8f8;
-    font-family: var(--font-body);
+    font-family: "Fraunces", serif;
     color: #111;
 }
 
@@ -34,10 +34,11 @@
 }
 
 .work-title {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 400;
+    font-style: normal;
     color: #111;
-    font-family: var(--font-heading);
+    font-family: "Fraunces", serif;
 }
 
 .pinned-card {
@@ -140,7 +141,7 @@
     font-weight: 700;
     line-height: 0.8;
     color: #e5e7eb;
-    font-family: var(--font-heading);
+    font-family: "Fraunces", serif;
 }
 
 .work-tags {
@@ -169,24 +170,27 @@
 }
 
 .work-title-new {
-    font-size: 2.6rem;
+    font-size: 2.8rem;
     line-height: 1.15;
     color: #111827;
-    font-family: var(--font-heading);
+    font-family: "Fraunces", serif;
     margin-bottom: 20px;
-    font-weight: 600;
+    font-weight: 400;
+    font-style: normal;
     letter-spacing: -0.5px;
 }
 
 .work-title-new strong {
-    font-weight: 700;
+    font-weight: 400;
+    font-style: normal;
     color: #374151;
 }
 
 .work-desc {
-    font-size: 1.1rem;
-    color: #6b7280;
-    line-height: 1.6;
+    font-family: "Fraunces", serif;
+    font-size: 1.15rem;
+    color: #4b5563;
+    line-height: 1.7;
     max-width: 95%;
 }
 
@@ -334,27 +338,29 @@
         border-radius: 100px;
         font-size: 0.75rem;
         color: #6b7280;
-        font-family: var(--font-body);
+        font-family: "Fraunces", serif;
     }
 
     .m-title {
-        font-size: clamp(20px, 5vw, 24px);
-        font-family: var(--font-heading);
-        font-weight: 600;
+        font-size: clamp(22px, 5vw, 26px);
+        font-family: "Fraunces", serif;
+        font-weight: 400;
+        font-style: normal;
         color: #111827;
         line-height: 1.2;
         margin-bottom: 12px;
     }
     .m-title strong {
-        font-weight: 700;
+        font-weight: 400;
+        font-style: normal;
     }
 
     .m-desc {
         font-size: 15px;
-        color: #6b7280;
-        line-height: 1.5;
+        color: #4b5563;
+        line-height: 1.6;
         margin-bottom: 24px;
-        font-family: var(--font-body);
+        font-family: "Fraunces", serif;
     }
 
     .m-view-btn {

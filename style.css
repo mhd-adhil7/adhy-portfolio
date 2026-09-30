@@ -1,3 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap');
+
+/* ==========================================
+   Fraunces Custom Webfont Family (Variable)
+   ========================================== */
+@font-face {
+    font-family: 'Fraunces';
+    src: url('assets/fonts/fraunces-normal.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Fraunces';
+    src: url('assets/fonts/fraunces-italic.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
 /* Global Styles & Variables */
 :root {
     --bg-color: #ffffff;
@@ -9,9 +30,11 @@
     --white: #ffffff;
     --border-color: rgba(0, 0, 0, 0.06);
 
-    --font-heading: 'General Sans', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-serif: 'Inter', sans-serif;
+    --font-heading: 'Fraunces', serif;
+    --font-body: 'Fraunces', serif;
+    --font-serif: 'Fraunces', serif;
+    --font-handwritten: 'Fraunces', serif;
+    --font-sans: 'Fraunces', serif;
 
     --spacing-xs: 8px;
     --spacing-sm: 16px;
@@ -30,12 +53,21 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    font-family: inherit;
+}
+
+html, body {
+    font-family: "Fraunces", serif;
+}
+
+body, button, input, textarea, select, a, p, span, h1, h2, h3, h4, h5, h6, label, div {
+    font-family: "Fraunces", serif;
 }
 
 body {
     background-color: #ffffff;
     color: #0a0a0a;
-    font-family: var(--font-body);
+    font-family: "Fraunces", serif;
     font-weight: 400;
     line-height: 1.6;
     overflow-x: hidden;
@@ -66,7 +98,7 @@ ul {
 
 button, a[class*="btn-"], .view-project-btn, .m-view-btn {
     cursor: pointer;
-    font-family: var(--font-heading);
+    font-family: "Fraunces", serif;
     font-weight: 500;
     border: none;
     outline: none;
@@ -104,59 +136,71 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 input, textarea {
-    font-family: var(--font-body);
+    font-family: "Fraunces", serif;
 }
 
 /* Typography Utilities */
 h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-style: normal;
+    letter-spacing: -0.01em;
     color: #0a0a0a;
-    line-height: 1.2;
+    line-height: 1.15;
 }
 
 h1 {
-    font-size: 56px;
-    font-weight: 600;
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1.1;
     margin-bottom: var(--spacing-sm);
 }
 
 h2 {
-    font-size: 44px;
-    font-weight: 600;
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 1.15;
 }
 
 h3 {
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 500;
+    line-height: 1.25;
 }
 
 h4 {
     font-size: 24px;
     font-weight: 500;
+    line-height: 1.3;
 }
 
 p {
-    font-size: 16px;
+    font-family: "Fraunces", serif;
+    font-size: 17px;
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.7;
     max-width: 700px;
 }
 
 small {
+    font-family: "Fraunces", serif;
     font-size: 14px;
     font-weight: 400;
 }
 
 .bold-name {
+    font-family: "Fraunces", serif;
     font-weight: 600;
 }
 
 .serif-font {
-    font-family: var(--font-serif);
-    font-style: italic;
+    font-family: "Fraunces", serif;
+    font-style: normal;
     font-weight: 400;
+}
+
+.handwritten, .font-handwritten {
+    font-family: "Fraunces", serif;
 }
 
 /* Layout Utility */
@@ -168,15 +212,51 @@ small {
 }
 
 .navbar {
-    position: absolute;
-    top: 30px;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
+    padding: 24px 0;
     background: transparent;
     z-index: 1000;
+    isolation: isolate;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: padding;
+    transition: padding 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Background blur overlay layer with smooth opacity transition to prevent flicker/flash */
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.navbar.navbar-scrolled {
+    padding: 14px 0;
+}
+
+.navbar.navbar-scrolled::before {
+    opacity: 1;
 }
 
 .nav-container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -199,10 +279,10 @@ small {
 }
 
 .nav-center-pill {
-    position: fixed;
-    top: 30px;
+    position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 1001;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(12px);
@@ -213,6 +293,12 @@ small {
     gap: 40px;
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease;
+}
+
+.navbar.navbar-scrolled .nav-center-pill {
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
 }
 
 .nav-center-pill a {
@@ -344,12 +430,14 @@ small {
     right: -100px;
     top: -30px;
     background: #ffffff;
-    padding: 8px 16px;
+    padding: 8px 18px;
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #333;
+    font-size: 1.25rem;
+    font-weight: 600;
+    font-family: "Fraunces", serif;
+    letter-spacing: 0.02em;
+    color: #222;
     white-space: nowrap;
     border: 1px solid rgba(0,0,0,0.04);
     pointer-events: none;
@@ -395,16 +483,20 @@ small {
 
 /* Minimal Headline */
 .minimal-headline {
-    font-size: 4.5rem;
-    line-height: 1.15;
-    font-weight: 600;
+    font-family: "Fraunces", serif;
+    font-style: normal;
+    font-size: 5rem;
+    line-height: 1.1;
+    font-weight: 400;
     color: #111111;
     margin-bottom: 24px;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.01em;
 }
 
 .minimal-subtitle {
-    font-size: 1.25rem;
+    font-family: "Fraunces", serif;
+    font-style: normal;
+    font-size: 1.35rem;
     color: #555555;
     font-weight: 400;
     margin-bottom: 48px;
@@ -613,9 +705,9 @@ small {
 .stat-number {
     display: block;
     font-size: 2.5rem;
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 8px;
-    font-family: var(--font-serif);
+    font-family: "Fraunces", serif;
 }
 
 .stat-label {
@@ -769,14 +861,14 @@ small {
 }
 
 .font-primary {
-    font-family: 'Playfair Display', serif;
+    font-family: "Fraunces", serif;
     font-style: normal;
     font-weight: 700;
 }
 
 .font-accent {
-    font-family: inherit;
-    font-style: italic;
+    font-family: "Fraunces", serif;
+    font-style: normal;
     color: var(--accent-color);
     /* Updated to match layout */
 }
@@ -1184,8 +1276,10 @@ small {
 }
 
 .service-main-title {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 400;
+    font-style: normal;
+    font-family: "Fraunces", serif;
     line-height: 1.1;
     color: var(--accent-color);
 }
@@ -1333,13 +1427,14 @@ small {
 
 
 .footer-heading {
-    font-size: 3.5rem;
+    font-size: 3.8rem;
     line-height: 1.1;
     color: var(--accent-color);
     margin-bottom: 24px;
-    font-weight: 700;
-    /* Match main headings */
-    letter-spacing: -0.02em;
+    font-family: "Fraunces", serif;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: -0.01em;
 }
 
 .footer-subtext {
@@ -1527,7 +1622,17 @@ small {
     }
 }
 
-/* Projects Marquee (Image Cards) */
+/* Projects & Skills Continuous Showcase Section */
+.projects-showcase-section {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    padding-top: 10px;
+    contain: paint;
+}
+
+/* Projects Marquee (Image Cards - Continuous Infinite Auto-Scroll to the RIGHT) */
 .projects-marquee {
     position: relative;
     width: 100%;
@@ -1543,13 +1648,11 @@ small {
 .projects-track {
     display: flex;
     align-items: center;
+    width: max-content;
     white-space: nowrap;
-    animation: imageScroll 30s linear infinite reverse;
     will-change: transform;
-}
-
-.projects-track:hover {
-    animation-play-state: paused;
+    transform: translate3d(-50%, 0, 0);
+    animation: scrollProjectsRight 40s linear infinite;
 }
 
 .project-card {
@@ -1571,16 +1674,18 @@ small {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
+.project-card a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
 .project-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
-}
-
-@keyframes imageScroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Shift by exactly half since it's duplicated */
 }
 
 @media (max-width: 768px) {
@@ -1592,15 +1697,14 @@ small {
     }
 }
 
-/* 3D Skills Marquee */
-/* 3D Skills Marquee */
+/* 3D Skills Marquee (Continuous Infinite Auto-Scroll to the LEFT - Opposite Direction) */
 .skills-marquee-3d {
     position: relative;
     width: 100%;
     padding: 40px 0;
     overflow: hidden;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     perspective: 1000px;
     /* Better depth for static flow */
@@ -1616,17 +1720,21 @@ small {
 .skills-track {
     display: flex;
     align-items: center;
-    gap: 80px;
-    /* Increased gap */
+    gap: 0;
+    width: max-content;
     white-space: nowrap;
-    animation: marqueeScroll 40s linear infinite;
     transform-style: preserve-3d;
     will-change: transform;
-    /* Tweaked rotation for "floor" effect */
-    transform: rotateX(15deg);
+    transform: rotateX(15deg) translate3d(0, 0, 0);
+    animation: scrollSkillsLeft 50s linear infinite;
+}
+
+.skills-track span {
+    margin-right: 80px;
 }
 
 .skill-item {
+    font-family: "Fraunces", serif;
     font-size: 2rem;
     /* Larger text */
     font-weight: 800;
@@ -1652,14 +1760,22 @@ small {
     opacity: 0.2;
 }
 
-/* Keyframes including the 3D rotation */
-@keyframes marqueeScroll {
+/* Continuous Infinite Auto-Scroll Keyframes */
+@keyframes scrollProjectsRight {
     0% {
-        transform: rotateX(15deg) translateX(0);
+        transform: translate3d(-50%, 0, 0);
     }
-
     100% {
-        transform: rotateX(15deg) translateX(-50%);
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes scrollSkillsLeft {
+    0% {
+        transform: rotateX(15deg) translate3d(0, 0, 0);
+    }
+    100% {
+        transform: rotateX(15deg) translate3d(-50%, 0, 0);
     }
 }
 
@@ -1670,8 +1786,8 @@ small {
         padding: 20px 0;
     }
 
-    .skills-track {
-        gap: 40px;
+    .skills-track span {
+        margin-right: 40px;
     }
 
     .skill-item {
@@ -1713,6 +1829,14 @@ html {
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        padding: 16px 0;
+    }
+
+    .navbar.navbar-scrolled {
+        padding: 12px 0;
+    }
+
     .desktop-nav {
         display: none !important;
     }
@@ -1782,8 +1906,8 @@ html {
     /* Mobile Dropdown Menu Panel */
     .mobile-menu-panel {
         display: block; /* Always in DOM for animation */
-        position: absolute;
-        top: 85px;
+        position: fixed;
+        top: 68px;
         right: 5%;
         width: 200px;
         background: rgba(255, 255, 255, 0.85);
@@ -1798,7 +1922,7 @@ html {
         visibility: hidden;
         transform: translateY(-10px);
         transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-        z-index: 999;
+        z-index: 1002;
     }
     
     .mobile-menu-panel.open {
@@ -1840,34 +1964,6 @@ html {
 /* ==========================================
    Premium Animation Utilities
    ========================================== */
-.navbar {
-    transition: background-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, border-bottom 0.4s ease, box-shadow 0.4s ease;
-}
-
-.navbar.navbar-scrolled {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.75) !important;
-    backdrop-filter: blur(16px) !important;
-    -webkit-backdrop-filter: blur(16px) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 10px 0;
-    animation: navSlideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes navSlideDown {
-    from { transform: translateY(-100%); }
-    to { transform: translateY(0); }
-}
-
-.navbar.navbar-scrolled .nav-center-pill {
-    top: 10px;
-    padding: 10px 24px;
-    border-color: rgba(0, 0, 0, 0.04);
-}
 
 /* Card Hover Lift & Soft Shadow Transitions */
 .card-lift, .skills-glass-card, .process-node, .faq-item, .service-card {
